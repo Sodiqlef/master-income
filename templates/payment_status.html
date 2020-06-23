@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}  Payment Status {% endblock %}
+
+{% block breadcrumb %}
+<b class="breadcrumb-item">Payment Status</b>
+{% endblock %}
+
+{% block content %}
+    {% include 'messages.html' %}
+
+<p>Dear <b>{{request.user|upper}}</b>, Kindly note that before we disburse payment, there are some criteria we look into.
+We ensure this for the smooth running of the system and avoid the tricking of the system.
+</p>
+<ul>
+    <li><strong>EARNINGS REVIEW:</strong> We check at your daily activities, if there is no false earning.</li>
+    <li><strong>SPONSORED POST VERIFICATION:</strong> We check your facebook timeline to verify our sponsored posts whether they are up-to date.</li>
+    <li><strong> DETAILS CROSSCHECK </strong> We check out your details especially your bank details before payment.</li>
+    <li><strong>LAST PAYMENT UPLOAD:</strong> We check our social media, if your last payment  screenshot was uploaded.</li>
+    <li><strong>DEDUCTION/PAYMENT DELIVERED:</strong> This is the last phase!, We process your payment into your registered bank account.</li>
+
+</ul>
+
+<b class="red text-uppercase"> Once any of the conditions above has been met positively, you will definitely have a successful payment.</b>
+<br>
+{% if status %}
+{% for payment in status %}
+
+{{user.username|upper}} PAYMENT STATUS
+
+<br><br>
+
+<h5>Number of withdrawals made: {{payment.made}}</h5>
+<h5> Date of last withdrawal made: {{payment.date}}</h5><br>
+
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
+  C H E C K - L A S T - S T A T U S
+</button><br>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">LAST PAYMENT STATUS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-justify">
+{% if payment.earnings_review is True%}
+<i class="fas fa-check-circle green"></i>
+{% elif payment.earnings_review is False %}
+<i class="fas fa-times-circle red"></i>
+{% else %}
+<i class="fas fa-circle yellow"></i>
+{% endif %}
+<b class="text-dark">EARNINGS REVIEW</b><br>
+
+{% if payment.sponsored_post_verification is True%}
+<i class="fas fa-check-circle green"></i>
+{% elif payment.sponsored_post_verification is False %}
+<i class="fas fa-times-circle red"></i>
+{% else %}
+<i class="fas fa-circle yellow"></i>
+{% endif %}
+<b class="text-dark" style="font-size: 110%">SPONSORED POST VERIFICATION</b><br>
+
+{% if payment.details_cross_check is True%}
+<i class="fas fa-check-circle green"></i>
+{% elif payment.details_cross_check is False %}
+<i class="fas fa-times-circle red"></i>
+{% else %}
+<i class="fas fa-circle yellow"></i>
+{% endif %}
+<b class="text-dark">DETAILS CROSS CHECK </b><br>
+
+{% if payment.last_payment_upload is True%}
+<i class="fas fa-check-circle green"></i>
+{% elif payment.last_payment_upload is False %}
+<i class="fas fa-times-circle red"></i>
+{% else %}
+<i class="fas fa-circle yellow"></i>
+{% endif %}
+<b class="text-dark">FIRST PAYMENT UPLOAD </b><br>
+
+{% if payment.deduction is True%}
+<i class="fas fa-check-circle green"></i>
+{% elif payment.deduction is False %}
+<i class="fas fa-times-circle red"> </i>
+{% else %}
+<i class="fas fa-circle yellow"> </i>
+{% endif %}
+<b class="text-dark">DEDUCTION/PAYMENT UPLOAD</b><br>
+
+</div>
+<br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">C l o s e</button>
+        <a type="button" class="btn btn-dark" href="{% url 'profile' %}">P r o f i l e</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% else %}
+<br>
+<i class="alert alert-info"> YOU HAVE NO WITHDRAWAL YET</i>
+{% endif %}
+{% endblock %}

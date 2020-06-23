@@ -1,0 +1,136 @@
+.navbar{
+    background-color: #a1b;
+    color: white;
+    font-family: algerian, Courier, fantasy;
+
+}
+.navbar-brand{
+    font-size: 120%;
+
+}
+.nav-link{
+    background-color: #aa11bb;
+    color: white;
+    font-family: algerian, Courier, fantasy;
+    font-weight: bold;
+}
+.nav-link:hover{
+    background-color: white;
+    color: #a1b;
+    font-family: Courier, fantasy;
+    font-weight: bold;
+}
+h1,h2,h3,h4,h5,h6,strong{
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.breadcrumb{
+    background-color: #a0b;
+}
+.btn{
+    background-color: purple;
+    color: white;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+}
+.btn:hover{
+    color: white;
+}
+table{
+    text-align: center;
+}
+th{
+    color: white;
+    background-color: purple;
+    border-style: solid;
+}
+tr:nth-child(even){
+    background-color: #e8f;
+}
+td{
+    text-align: center;
+}
+.red{
+    color: red;
+}
+.list-group{
+    list-style-type: none;
+    font-size: 120%;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+    background-color: purple;
+}
+.list-group-item{
+    color: purple;
+    font-family: serif;
+    font-weight: bolder;
+}
+.list-group-item:hover{
+    background-color: purple;
+    color: white;
+    text-decoration: none;
+}
+p{
+    font-family: "Segoe UI", Monaco, serif;
+}
+.lodge{
+    border-style: solid;
+    border-width: 5px;
+    border-color: purple;
+}
+.page-link{
+    text-align: center;
+}
+.white{
+    color: white;
+}
+.green{
+    color: green;
+    font-weight: bold;
+}
+.red{
+    color: red;
+}
+.yellow{
+    color: yellow;
+    font-weight: bolder;
+}
+.fa-circle, .fa-check-circle, .fa-times-circle{
+    font-size: 150%;
+}
+.text-dark{
+    font-size: 120%;
+}
+.social_img{
+    width: 10%;
+    height: 10%;
+    border-radius: 50%;
+}
+.social_img:hover{
+    width: 12%;
+    height: 12%;
+}
+.pre{
+    white-space: pre-line;
+}
+
+footer{
+    text-align: center;
+    background-color: #1b1e21;
+}
+footer img{
+    text-align: center;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+}
+.profile-picture{
+    text-align: center;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+}
+footer h3{
+    font-family: sans-serif;
+}

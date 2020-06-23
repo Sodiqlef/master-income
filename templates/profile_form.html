@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+{% include 'messages.html' %}
+{% if user.profile_created is not True %}
+
+<legend>Please <b class="red">NOTE THAT:</b>If this form is not submitted or the details submitted are incorrect,
+your withdrawal would be declared void.</legend><br>
+<form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+{% include 'widget.html' %}
+    <input type="submit" class="btn btn-lg btn-block btn-dark" value="UPDATE">
+    </form>
+
+{% else %}
+<strong class="red">YOU HAVE SUCCESSFULLY UPDATED YOUR PROFILE</strong>
+{% endif %}
+{% endblock %}

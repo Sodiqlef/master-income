@@ -1,0 +1,78 @@
+
+{% load widget_tweaks %}
+
+
+{% if form.non_field_errors %}
+  <div class="alert alert-danger" role="alert">
+    {% for error in form.non_field_errors %}
+      <i class="mb-0">{{ error }}</i>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% for field in form %}
+  <div class="form-group">
+    {{ field.label_tag }}
+        <div class = "input-group">
+      <div class="input-group-text">
+        {% if field.name == 'username' or field.name == 'name' %}
+        <i class="fas fa-user"></i>
+        {% elif field.name == 'password' or field.name == 'password1' or field.name == 'password2' %}
+        <i class="fas fa-key"></i>
+        {% elif field.name == 'new_password2' or field.name == 'new_password1' or field.name == 'old_password' %}
+        <i class="fas fa-lock"></i>
+          {% elif field.name == 'phone_number' %}
+        <i class="fas fa-phone-alt"></i>
+          {% elif field.name == 'facebook_link' %}
+        <i class="fab fa-facebook"></i>
+          {% elif field.name == 'account_name' or field.name == 'account_number' %}
+        <i class="fas fa-address-book"></i>
+          {% elif field.name == 'bank_name' %}
+        <span class="fas fa-laptop-house"></span>
+         {% elif field.name == 'first_name' or field.name == 'last_name' %}
+        <span class="fas fa-user-tie"></span>
+        {% elif field.name == 'email' %}
+        <i class="fas fa-envelope"></i>
+        {% elif field.name == 'guider' %}
+        <i class="fas fa-user-friends"></i>
+        {% elif field.name == 'coupon_code' %}
+        <i class="fas fa-user-lock"></i>
+        {% elif field.name == 'title' %}
+        <i class="fas fa-heading"></i>
+        {% elif field.name == 'activities_earning_to_withdraw' or field.name == 'guider_bonus_to_withdraw' %}
+        <strike><b>N</b></strike>
+        {% elif field.name == 'post_image' or field.name == 'profile_picture' %}
+        <i class="fas fa-image"></i>
+        {% elif field.name == 'category' %}
+        <i class="fas fa-book"></i>
+
+
+        {% endif %}
+      </div>
+
+
+    {% if form.is_bound %}
+      {% if field.errors %}
+
+        {% render_field field class="form-control is-invalid" %}
+        {% for error in field.errors %}
+          <div class="invalid-feedback">
+            {{ error }}
+          </div>
+        {% endfor %}
+      {% else %}
+        {% render_field field class="form-control is-valid" %}
+      {% endif %}
+    {% else %}
+      {% render_field field class="form-control" %}
+    {% endif %}
+</div>
+
+    {% if field.help_text %}
+      <small class="form-text text-muted">
+        {{ field.help_text }}
+      </small>
+    {% endif %}
+
+  </div>
+{% endfor %}

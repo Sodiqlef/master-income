@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+{% include 'messages.html' %}
+<blockquote> Please, before you proceed on withdrawal, you should read through our withdrawal rules below and make sure you adhere to them.  </blockquote>
+<h4>WITHDRAWAL RULES</h4>
+<ol>
+    <li>You cannot withdraw more than you've earned</li>
+    <li>You can only withdraw in <b class="red"> multiple of 1500 in activities earning </b> and
+        <b class="red"> multiple of 1000 in guider bonus</b></li>
+    <li>You should leave any field you ain't withdrawing from as 0. Please both fields can't be 0</li>
+    <li>You must Have at least 1500 in your activities earning after withdrawal</li>
+    <li>You can't withdraw less than 1500 from your activities earning</li>
+    <li>You can't withdraw less than 1000 from your guider bonus</li>
+    <li>You must have updated your profile before processing withdrawal</li>
+    <li>Do not click the withdraw button more than once, else your earnings will be deducted and payment wouldn't be made</li>
+</ol>
+
+
+<strong> ACTIVITIES EARNING: {{earning.activities_earning_remain}} <br>
+GUIDER BONUS: {{earning.guider_bonus_remain}}</strong><br>
+<br>
+
+
+{% if week == 6 %}
+{% if time == 21 %}
+{% if request.user.profile %}
+<form method="post" novalidate>
+    {% csrf_token %}
+{% include 'widget.html' %}
+    <input type="submit" class="btn btn-lg btn-block" value="WITHDRAW">
+    </form>
+{% else %}
+<center class="red"><strong class="text-uppercase">please create a profile first</strong></center>
+{% endif %}
+{% else %}
+<b class="alert alert-info"> Withdrawal Period is only on wednesday 7pm to 8pm </b>
+{% endif %}
+{% else %}
+<b class="alert alert-info"> Withdrawal Period is only on wednesday 7pm to 8pm </b>
+{% endif %}
+{% endblock %}

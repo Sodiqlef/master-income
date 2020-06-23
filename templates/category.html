@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {{post.first.category}} category {% endblock %}
+
+{% block categories %}
+<h2><strong><b> POPULAR CATEGORIES</b> </strong></h2>
+<b>
+<a href="{% url 'business' %}">BUSINESS</a>|
+<a href="{% url 'politics' %}">POLITICS</a>|
+<a href="{% url 'sport' %}">SPORT</a>|
+<a href="{% url 'education' %}">EDUCATION</a>|
+<a href="{% url 'entertainment' %}">ENTERTAINMENT</a>|
+<a href="{% url 'health' %}">HEALTH</a>|
+</b>
+{% endblock %}
+
+
+{% block content %}
+    {% for each in post %}
+<div class="row justify-content-center">
+    <div class="card text-center " style="width: 15rem; ">
+  <img class="card-img-top" src="{{each.post_image.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{each.title|title}}</h5>
+<small>
+    <i class="fas fa-user"></i>{{each.created_by}}
+    <i class="fas fa-clock"></i>{{each.date}}
+    <b>in</b> {{each.category}}
+</small><br>
+      <p class="card-text">{{each.post|slice:"70"}}...</p>
+    <a href="{% url 'post' each.pk %}" class="btn btn-dark">READ MORE</a>
+  </div>
+    </div>
+    </div>
+<br>
+    {% endfor %}
+<br>
+{% if post.has_other_pages %}
+<nav aria-label="Post Pagination" class="mb-4">
+    <ul class="pagination">
+        {% if post.has_previous %}
+        <li class=" page-item"><a class="btn btn-dark text-light" href="?page={{post.previous_page_number}}">P R E V I O U S</a></li>
+<i class="white"> - </i>
+        {% else %}
+
+        {% endif %}
+
+        {% if post.has_next %}
+        <li class="page-item">
+            <a class="btn btn-dark text-light" href="?page={{ post.next_page_number}}">N E X T</a>
+        </li>
+        {% else %}
+
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}

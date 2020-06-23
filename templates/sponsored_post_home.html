@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. Advertise {% endblock %}
+{% block breadcrumb %}
+Sponsored Post
+{% endblock %}
+
+{% block content %}
+<h5>Please read the instructions below carefully, for guidance on how to shared sponsored post. </h5>
+<p>Please adhere to the below guidelines to prevent issues with sharing sponsored post.</p>
+<ul>
+    <li>Click ont the post you want to earn from</li>
+    <li>Copy the text and download the image(if any), then post on your facebook timeline.</li>
+    <li>After or before sharing, click on the button labelled "Click here to earn" to earn your points</li>
+    <li>Make sure your post is made public to enable us verify it on payment day</li>
+</ul>
+{% for post in sponsored_post %}
+
+<a href="{% url 'sponsored-post-news' post.pk %}"><b> SPONSORED POST</b> <b>{{post.date}} </b>
+    <b class="red"> {{forloop.counter}}</b></a><br>
+
+{% endfor %}
+{% endblock %}

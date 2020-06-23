@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+<strong>Before Submitting post, read the following rules carefully.</strong>
+<ol>
+    <li>Do not submit a false post</li>
+    <li>Make sure the title of the post goes with the subject</li>
+    <li>Read your post carefully to avoid submitting mistakes such as typographical error</li>
+    <li>Make sure the post you are submitting fits the category you're submitting to.</li>
+</ol>
+    {% include 'messages.html' %}
+<form method="POST" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+{% include 'widget.html' %}
+    <input type="submit" class="btn btn-lg btn-block btn-dark" value="S u b m i t">
+    </form>
+{% endblock %}

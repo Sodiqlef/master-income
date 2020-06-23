@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} {{block.super}}. Sign Up {% endblock %}}
+
+{% block content %}
+    {% include 'messages.html' %}
+
+<form method="post" novalidate>
+    {% csrf_token %}
+    {% include 'widget.html' %}
+    <input type="submit" class="btn btn-lg btn-block btn-dark" value="Register">
+</form>
+{% endblock %}

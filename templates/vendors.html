@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>We prepare a payment method for you to activate your account.</p>
+<p>You call any of our coupon vendors or message them on WhatsApp, make payment to their account and they will send you a Coupon code you can use to activate your account.</p>
+<strong>PLEASE ALWAYS REVIEW THIS PAGE EACH TIME YOU WANT TO PURCHASE COUPON CODE</strong>
+<p>Below are the authorized distributors of MASTER INCOME coupon code to register yourself for immediate approval.</p>
+<p>If you encounter any problems with any of the coupon distributors,
+    Contact the Coupon vendor team admin here.</p>
+<strong>08118933498</strong>
+    <p>Whatsapp only</p>
+
+<table border="1" class="table">
+    {% for vendor in vendors %}
+    <tr>
+        <th>NAME</th>
+        <th>PHONE NUMBER</th>
+        <th>WHATSAPP</th>
+    </tr>
+
+    <tr>
+        <td>{{vendor.name}}</td>
+
+        <!-- Note that vendor.number must not start with 0 in the DB -->
+        <td>0{{vendor.number}}</td>
+        <td ><a  href="https://wa.me/234{{vendor.number}}?text=Hello, i want to purchase Master income's coupon code ">
+            <img class="whatsapp" src=" /static/img/whatsapp.jpeg " alt="whatsapp" style="height: 4rem; border-radius: 50%"></a></td>
+    </tr>
+        {% endfor %}
+</table>
+{% endblock %}
+

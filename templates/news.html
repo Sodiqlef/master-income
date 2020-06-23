@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %} {{block.super}}. Sign Up {% endblock %}}
+
+
+{% block content %}
+{{ block.super}}
+<h3> {{posts.title}}</h3>
+<small>
+    <i class="fas fa-user"></i>{{posts.created_by}}
+    <i class="fas fa-clock"></i>{{posts.date}}
+</small><br><br>
+<p class="pre">{{posts.post}}</p><br>
+
+</div>
+<button onclick="window.print()" class="btn btn-dark"> PRINT POST</button>
+
+
+{% endblock %}

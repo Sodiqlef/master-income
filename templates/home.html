@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. News{% endblock %}
+{% block link %} {{block.super}} {% endblock %}
+
+{% block categories %}
+    {% include 'messages.html' %}
+
+<h3> POPULAR CATEGORIES</h3>
+<b>
+<a href="{% url 'business' %}">BUSINESS</a>|
+<a href="{% url 'politics' %}">POLITICS</a>|
+<a href="{% url 'sport' %}">SPORT</a>|
+<a href="{% url 'education' %}">EDUCATION</a>|
+<a href="{% url 'entertainment' %}">ENTERTAINMENT</a>|
+<a href="{% url 'health' %}">HEALTH</a>|
+</b>
+{% endblock %}
+{% block breadcrumb %}
+
+    <li class="breadcrumb-item" style="color: white;">Total Post: {{post_count}}</li>
+    <li class="breadcrumb-item" style="color: white;">Total Users: {{user_count}}</li>
+
+{% endblock %}
+
+
+{% block content %}
+<div style="border: 3px solid lightgrey;">
+
+    {% for post in posts %}
+<div class="row justify-content-center">
+    <div class="card text-center " style="width: 15rem; ">
+  <img class="card-img-top" src="{{post.post_image.url}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title|title}}</h5>
+<small>
+    <i class="fas fa-user"></i>{{post.created_by}}
+    <i class="fas fa-clock"></i>{{post.date}}
+    <b>in</b> {{post.category}}
+</small><br>
+      <p class="card-text">{{post.post|slice:"70"}}...</p>
+    <a href="{% url 'post' post.pk %}" class="btn btn-dark">R E A D - M O R E</a>
+  </div>
+    </div>
+    </div>
+<br>
+    {% endfor %}
+<br>
+{% if posts.has_other_pages %}
+<nav aria-label="Posts Pagination" class="mb-4">
+    <ul class="pagination">
+        {% if posts.has_previous %}
+        <li class=" page-item"><a class="btn btn-dark text-light" href="?page={{posts.previous_page_number}}">P R E V I O U S</a></li>
+<i class="white"> - </i>
+        {% else %}
+
+        {% endif %}
+
+        {% if posts.has_next %}
+        <li class="page-item">
+            <a class="btn btn-dark text-light" href="?page={{ posts.next_page_number}}">N E X T</a>
+        </li>
+        {% else %}
+
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+{% endblock %}
+

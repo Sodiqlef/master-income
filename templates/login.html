@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+<form method="post" novalidate>
+    {% csrf_token %}
+{% include 'widget.html' %}
+    <input type="submit" class="btn btn-lg btn-dark btn-block" value="Log in">
+    </form>
+<pre>
+    <p> Forgot Password? <a href="{% url 'password_reset' %}"><b class="blockquote">RESET!!!</b></a> </p>
+</pre>
+{% endblock %}

@@ -1,0 +1,29 @@
+{
+  "short_name": "MastersIncome",
+  "name": "Masters Income",
+  "theme_color": "#a0b",
+  "background_color": "#F7F8F9",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "static/img/logo.jpg",
+      "type": "image/jpg",
+      "sizes": "48x48"
+    },
+    {
+      "src": "static/img/logo.jpg",
+      "type": "image/jpg",
+      "sizes": "96x96"
+    },
+    {
+      "src": "static/img/logo.jpg",
+      "type": "image/jpg",
+      "sizes": "144x144"
+    },
+    {
+      "src": "static/img/logo.jpg",
+      "type": "image/jpg",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?utm_source=launcher"}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+    {% include 'messages.html' %}
+
+<form method="post" novalidate>
+    {% csrf_token %}
+{% include 'widget.html' %}
+    <input type="submit" value="S U B M I T" class="btn btn-dark btn-block">
+    </form>
+{% endblock %}

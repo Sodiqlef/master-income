@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} {{block.super}}. Advertise {% endblock %}
+{% block breadcrumb %}
+Sponsored Post: {{sponsored_post.date}}
+{% endblock %}
+
+{% block content %}
+<center><h3> {{sponsored_post.title}} </h3> </center>
+<img class="img-fluid" src="{{sponsored_post.feature_image.url}}" alt="feature image">
+<p class="pre">{{sponsored_post.subject}}</p>
+{% endblock %}

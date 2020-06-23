@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %} {{block.super}}. {% endblock %}
+
+{% block content %}
+    {% include 'messages.html' %}
+
+{% if user.profile.profile_created is not True %}
+<a href="{% url 'profile_form' %}" class="btn btn-block btn-dark">Update Profile</a>
+{% else %}
+<div class="row justify-content-center">
+
+<img class="profile-picture" src="{{user.profile.profile_picture.url}}">
+    </div>
+<br>
+{% endif %}
+{% if user.coupon.is_activated is not True %}
+<a href="{% url 'coupon_form' %}" class="btn btn-block btn-dark">Activate Account</a>
+{% else %}
+<table class="table lodge">
+    <tr >
+        <td><b>ACTIVITIES EARNING</b></td>
+        <td><b>{{earning.activities_earning_remain}}</b></td>
+    </tr>
+    <tr>
+        <td><b>GUIDER BONUS</b></td>
+        <td><b>{{earning.guider_bonus_remain}}</b></td>
+
+    </tr>
+</table>
+<ul class="list-group" >
+    <li><a href="{% url 'withdrawal_form' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: purple; border-style: dashed;">WITHDRAWAL</a></li>
+    <li><a href="{% url 'payment_status' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: purple; border-style: dashed;">PAYMENT STATUS</a></li>
+    <li><a href="{% url 'support_form' %}" class="list-group-item" id="support" style=" border-radius:20%; border-bottom-color: purple; border-style: dashed;">SUPPORT</a></li>
+    <li><a href="{% url 'sponsored-post-home' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: purple; border-style: dashed;">SPONSORED POSTS</a></li>
+</ul>
+{% endif %}
+<br>
+<br>
+<h3>PROFILE DETAILS</h3>
+<p> Submitted false information? we've got you covered, Contact our <a href="{% url 'support_form' %}"><b>SUPPORT</b></a> channel to help you out</p>
+<table border="1" class="table ">
+    <tr>
+        <td>Full Name</td>
+        <td>{{user.first_name|title}} {{user.last_name|title}} </td>
+    </tr>
+    <tr>
+        <td>Username</td>
+        <td>{{user.username}}</td>
+    </tr>
+    <tr>
+        <td>Email Address</td>
+        <td>{{user.email}}</td>
+    </tr>
+    <tr>
+    <td> Created Post Approved</td>
+        <td>{{post}}</td>
+
+    </tr>
+    <tr>
+        <td>Phone Number</td>
+        <td>{{user.profile.phone_number}}</td>
+    </tr>
+    <tr>
+        <td>Facebook Link</td>
+        <td>{{user.profile.facebook_link}}</td>
+    </tr>
+    <tr>
+        <td> Bank Name</td>
+        <td>{{user.profile.bank_name}}</td>
+    </tr>
+    <tr>
+        <td>Account Name</td>
+        <td>{{user.profile.account_name}}</td>
+    </tr>
+    <tr>
+        <td>Account Number</td>
+        <td>{{user.profile.account_number}}</td>
+    </tr>
+</table>
+
+{% endblock %}
