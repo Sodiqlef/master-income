@@ -40,7 +40,7 @@ class Earning(models.Model):
     guider_bonus_remain = models.IntegerField(default=0)
     last_login = models.IntegerField(default=20200000)
     post_pk = models.PositiveIntegerField(default=0)
-    news_pk = models.TextField(null=True)
+    news_pk = models.TextField(default=0)
 
     def __str__(self):
         return f'{self.user}'

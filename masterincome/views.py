@@ -103,13 +103,15 @@ def post(request, pk):
     coupon = CouponCode.objects.all()
     if request.user.is_authenticated:
         for each in coupon:
-            if request.user == each.user:
-                earning = Earning.objects.get(user=request.user)
-                if str(posts.pk) not in earning.news_pk:
-                    earning.news_pk += f'{posts.pk}-'
-                    earning.news_earned += 2
-                    earning.save()
-                    print(earning.news_earned)
+            if posts.created_by is not request.user.is_superuser:
+                if request.user.date_joined < posts.date:
+                    if request.user == each.user:
+                        earning = Earning.objects.get(user=request.user)
+                        if f'{posts.pk}' not in earning.news_pk:
+                            earning.news_pk += f'{posts.pk}-'
+                            earning.news_earned += 2
+                            earning.save()
+                            print(request.user.last_login)
     return render(request, 'news.html', {'posts': posts})
 
 

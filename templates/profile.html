@@ -18,7 +18,7 @@
 {% else %}
 <table class="table lodge">
     <tr >
-        <td><b>ACTIVITIES EARNING</b></td>
+        <td><b>ACTIVITIES EARNING </b></td>
         <td><b>{{earning.activities_earning_remain}}</b></td>
     </tr>
     <tr>
@@ -27,6 +27,32 @@
 
     </tr>
 </table>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+  C O N VE R S I O N - R A T E
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">THIS WEEK CONVERSION RATE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div><br><br>
+
 <ul class="list-group" >
     <li><a href="{% url 'withdrawal_form' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: purple; border-style: dashed;">WITHDRAWAL</a></li>
     <li><a href="{% url 'payment_status' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: purple; border-style: dashed;">PAYMENT STATUS</a></li>
