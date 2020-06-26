@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from decouple import config, Csv
+from decouple import Csv, config
 import dj_database_url
 from django.contrib.messages import constants
 
