@@ -1,17 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. {% endblock %}
+{% block title %} Create Profile {% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
+
+{% block breadcrumb %}
+CREATE A PROFILE NOW
+{% endblock %}
 
 {% block content %}
 {% include 'messages.html' %}
 {% if user.profile_created is not True %}
 
-<legend>Please <b class="red">NOTE THAT:</b>If this form is not submitted or the details submitted are incorrect,
-your withdrawal would be declared void.</legend><br>
+<strong>Please <b class="red">NOTE THAT:</b>If this form is not submitted or the details submitted are incorrect,
+your withdrawal would be declared void.</strong>
 <form method="post" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
 {% include 'widget.html' %}
-    <input type="submit" class="btn btn-lg btn-block btn-dark" value="UPDATE">
+    <input type="submit" class="btn btn-block btn-dark" value="UPDATE">
     </form>
 
 {% else %}

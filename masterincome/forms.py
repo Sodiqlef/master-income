@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Support, CouponVendor
+from .models import Post, Support, SponsoredPost
 
 
 class PostForm(forms.ModelForm):
@@ -13,4 +13,5 @@ class SupportForm(forms.ModelForm):
 
     class Meta:
         model = Support
-        fields = ['name', 'subject']
+        fields = ['username', 'email', 'phone_number', 'subject']
+

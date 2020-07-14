@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 
 {% block title %}  Payment Status {% endblock %}
-
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
 {% block breadcrumb %}
-<b class="breadcrumb-item">Payment Status</b>
+<b class="breadcrumb-item">{{user.username|upper}} Payment Status</b>
 {% endblock %}
 
 {% block content %}
@@ -21,20 +23,18 @@ We ensure this for the smooth running of the system and avoid the tricking of th
 
 </ul>
 
-<b class="red text-uppercase"> Once any of the conditions above has been met positively, you will definitely have a successful payment.</b>
+<center class="alert alert-success"><strong> Once any of the conditions above has been met positively, you will definitely have a successful payment.</strong></center>
 <br>
 {% if status %}
 {% for payment in status %}
 
-{{user.username|upper}} PAYMENT STATUS
-
 <br><br>
 
-<h5>Number of withdrawals made: {{payment.made}}</h5>
-<h5> Date of last withdrawal made: {{payment.date}}</h5><br>
-
+<strong class="text-uppercase">Number of withdrawals made: {{payment.made}}</strong><br>
+<strong class="text-uppercase"> Date of last withdrawal made: {{payment.date}} (C.A.T)</strong><br>
+<br>
 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
-  C H E C K - L A S T - S T A T U S
+  CHECK LAST STATUS
 </button><br>
 
 <!-- Modal -->
@@ -58,14 +58,14 @@ We ensure this for the smooth running of the system and avoid the tricking of th
 {% endif %}
 <b class="text-dark">EARNINGS REVIEW</b><br>
 
-{% if payment.sponsored_post_verification is True%}
+{% if payment.last_payment_upload is True%}
 <i class="fas fa-check-circle green"></i>
-{% elif payment.sponsored_post_verification is False %}
+{% elif payment.last_payment_upload is False %}
 <i class="fas fa-times-circle red"></i>
 {% else %}
 <i class="fas fa-circle yellow"></i>
 {% endif %}
-<b class="text-dark" style="font-size: 110%">SPONSORED POST VERIFICATION</b><br>
+<b class="text-dark">LAST PAYMENT UPLOAD </b><br>
 
 {% if payment.details_cross_check is True%}
 <i class="fas fa-check-circle green"></i>
@@ -76,14 +76,14 @@ We ensure this for the smooth running of the system and avoid the tricking of th
 {% endif %}
 <b class="text-dark">DETAILS CROSS CHECK </b><br>
 
-{% if payment.last_payment_upload is True%}
+{% if payment.sponsored_post_verification is True%}
 <i class="fas fa-check-circle green"></i>
-{% elif payment.last_payment_upload is False %}
+{% elif payment.sponsored_post_verification is False %}
 <i class="fas fa-times-circle red"></i>
 {% else %}
 <i class="fas fa-circle yellow"></i>
 {% endif %}
-<b class="text-dark">FIRST PAYMENT UPLOAD </b><br>
+<b class="text-dark" style="font-size: 110%">SPONSORED POST VERIFICATION</b><br>
 
 {% if payment.deduction is True%}
 <i class="fas fa-check-circle green"></i>
@@ -108,6 +108,6 @@ We ensure this for the smooth running of the system and avoid the tricking of th
 {% endfor %}
 {% else %}
 <br>
-<i class="alert alert-info"> YOU HAVE NO WITHDRAWAL YET</i>
+<center class="alert alert-success"> <strong > YOU HAVE NO WITHDRAWAL YET</strong></center>
 {% endif %}
 {% endblock %}

@@ -1,0 +1,34 @@
+{% load static %} 
+{% load pwa %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% progressive_web_app_meta %}
+    {% block ad %}{% endblock %}
+    <meta name="google-site-verification" content="3aT_eg7kqQkqGYfAFydr-DKW7JFGXJ9oU93dNmHYP5o">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}{% endblock %}
+    <title class="text-uppercase">does not exist @masters income</title>
+    <link rel="icon" href="{%  static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}">
+    <link rel="icon" href="{%  static 'img/logo.jpg' %}">
+</head>
+
+<body>
+<center><h1>LOOKS LIKE THE PAGE YOU ARE LOOKING FOR DOES NOT EXIST</h1>
+<strong>TRY ANY OF THIS LINKS IF YOU'RE LOST</strong>
+<ul>
+    <li><a href="{% url 'home' %}" class="btn btn-success"><i class="fas fa-home"></i> HOME</a></li>
+    <li><a href="{% url 'package' %}" class="btn btn-success"> <i class="fas fa-check"></i> PACKAGE</a></li>
+    <li><a href="{% url 'vendors' %}" class="btn btn-success"> <i class="fas fa-code"></i> VENDORS</a></li>
+</ul>
+</center>
+
+
+<script src="{%  static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{%  static 'js/popper.min.js' %}"></script>
+<script src="{%  static 'js/bootstrap.min.js' %}"></script>
+<script src="{%  static 'js/all.min.js' %}"></script>
+</body>
+</html>

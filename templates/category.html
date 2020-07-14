@@ -1,19 +1,52 @@
 {% extends 'base.html' %}
+{% block meta %}<meta name="description" content="Read news from different categories on master income">{% endblock %}
 
-{% block title %} {{block.super}}. {{post.first.category}} category {% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
+{% block title %} {{block.super}} {% endblock %}
 
 {% block categories %}
-<h2><strong><b> POPULAR CATEGORIES</b> </strong></h2>
-<b>
-<a href="{% url 'business' %}">BUSINESS</a>|
-<a href="{% url 'politics' %}">POLITICS</a>|
-<a href="{% url 'sport' %}">SPORT</a>|
-<a href="{% url 'education' %}">EDUCATION</a>|
-<a href="{% url 'entertainment' %}">ENTERTAINMENT</a>|
-<a href="{% url 'health' %}">HEALTH</a>|
+    {% include 'messages.html' %}
+
+<!-- Button trigger modal -->
+<center><button type="button" class="btn btn-dark text-uppercase" data-toggle="modal" data-target="#exampleModal">
+  POPULAR CATEGORIES
+</button></center>
+<br>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ALL CATEGORIES</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <b>
+<a href="{% url 'business' %}">BUSINESS</a><br>
+<a href="{% url 'politics' %}">POLITICS</a><br>
+<a href="{% url 'sport' %}">SPORT</a><br>
+<a href="{% url 'education' %}">EDUCATION</a><br>
+<a href="{% url 'entertainment' %}">ENTERTAINMENT</a><br>
+<a href="{% url 'health' %}">HEALTH</a><br>
+<a href="{% url 'other' %}">OTHER</a>
 </b>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
+{% block breadcrumb %}
+Categories
+{% endblock %}
 
 {% block content %}
     {% for each in post %}

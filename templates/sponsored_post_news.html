@@ -1,12 +1,47 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. Advertise {% endblock %}
+{% block title %} {{sponsored_post.title}} {% endblock %}
 {% block breadcrumb %}
 Sponsored Post: {{sponsored_post.date}}
 {% endblock %}
 
 {% block content %}
-<center><h3> {{sponsored_post.title}} </h3> </center>
-<img class="img-fluid" src="{{sponsored_post.feature_image.url}}" alt="feature image">
+
+<center>
+    <img class="profile-picture" src="{{sponsored_post.feature_image.url}}" alt="feature image" style="border-radius: 1px;"> <br>
+</center>
 <p class="pre">{{sponsored_post.subject}}</p>
+
+
+<p style="border-top: 1px solid #aa11bb"></p>
+<center>
+    <button onclick="window.print()" class="btn btn-dark">
+        PRINT <span class="badge badge-light"><i class="fas fa-print" style="color: #f22"></i> </span>
+    </button>
+
+    <button type="button" class="btn btn-dark text-uppercase" data-toggle="modal" data-target="#exampleModal">
+        CLICK TO EARN <span class="badge badge-light"><i class="fas fa-money-check"></i> </span></button>
+<br>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="link" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">SPONSORED POST EARN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <center><i class="fas fa-check-circle"></i> </center>
+You've successfully earned for this post make sure you've shared to your facebook page and click complete to finish the steps.
+      </div>
+      <div class="modal-footer">
+        <a type="button" href="{% url 'profile' %}" class="btn btn-dark" >Complete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</center>
 {% endblock %}

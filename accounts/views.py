@@ -8,8 +8,6 @@ from masterincome.models import Post, CouponVendor
 from django.contrib.auth.decorators import login_required
 from django.db.models.expressions import F
 
-
-
 # Create your views here.
 
 
@@ -19,6 +17,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             auth_login(request, user)
+            messages.success(request, "you,ve successfully registered, finish your registration in your profile page")
             return redirect('home')
     else:
         form = SignUpForm()
@@ -794,8 +793,8 @@ def profile(request):
                                                                                         'guider_bonus': coupon}, )
     earning.approved_post = post
     earning.guider_bonus = coupon
-    earning.activities_earning = F('daily_login') + F('approved_post') + F('news_earned')
-    earning.activities_earning_remain = F('daily_login') + F('approved_post') + F('news_earned')\
+    earning.activities_earning = F('daily_login') + F('approved_post') + F('news_earned') + F('sponsored_post')
+    earning.activities_earning_remain = F('daily_login') + F('approved_post') + F('news_earned') + F('sponsored_post')\
                                         - F('activities_earning_withdrawn')
     earning.guider_bonus_remain = F('guider_bonus') - F('guider_bonus_withdrawn')
     earning.save()
@@ -810,18 +809,20 @@ def withdrawal_form(request):
     coupon = CouponCode.objects.all()
     week = datetime.now().weekday()
     time = datetime.now().hour
+    
 
     if request.method == 'POST':
         form = WithdrawalForm(request.POST)
         if form.is_valid():
             withdrawal = form.save(commit=False)
+            
             if request.user.profile:
                 withdrawal.user = request.user
-                withdrawal.account_details = f'''bank name: {request.user.profile.bank_name}
-                                                account_number: {request.user.profile.account_number}
-                                                account name: {request.user.profile.account_name}'''
+                withdrawal.account_number = request.user.profile.account_number
+                withdrawal.account_name = request.user.profile.account_name
+                withdrawal.bank_name = request.user.profile.bank_name
                 withdrawal.facebook_link = request.user.profile.facebook_link
-                if earning.activities_earning_remain >= withdrawal.activities_earning_to_withdraw >= 1500 or withdrawal.activities_earning_to_withdraw == 0:
+                if earning.activities_earning_remain >= withdrawal.activities_earning_to_withdraw >= 3000 or withdrawal.activities_earning_to_withdraw == 0:
                     if earning.guider_bonus_remain >= withdrawal.guider_bonus_to_withdraw >= 1000 or withdrawal.guider_bonus_to_withdraw == 0:
                         if withdrawal.activities_earning_to_withdraw != 0 or withdrawal.guider_bonus_to_withdraw != 0:
                             status, statusCreate = PaymentStatus.objects.update_or_create(user=request.user,
@@ -847,7 +848,7 @@ def withdrawal_form(request):
                                         messages.error(request, 'Your guider bonus can only be withdrawn in multiple of 1000')
                                 else:
                                     messages.error(request,
-                                                   'Your activities earning can only be withdrawn in multiple of 1500')
+                                                   'Your activities point can only be withdrawn in multiple of 1500')
                             else:
                                 messages.error(request, 'Please Activate Your Account First')
                         else:
@@ -858,7 +859,7 @@ def withdrawal_form(request):
                                        "You can't withdraw more than your guider bonus and less than 1000 naira from your guider bonus")
                 else:
                     messages.error(request,
-                                   "You can't withdraw more than your activities earning and less than 1500 naira from your activities earnings")
+                                   "You can't withdraw more than your activities point and less than 3000 naira from your activities earnings")
             else:
                 messages.error(request,
                   "You have to create a profile first")
@@ -879,5 +880,19 @@ def vendors_dashboard(request):
 
 
 def payment_status(request):
-    status = PaymentStatus.objects.filter(user=request.user).order_by('date')
+    status = PaymentStatus.objects.filter(user=request.user)
+    withdrawal = Withdrawal.objects.all()
+    
+    for user in withdrawal:
+        if user.user == request.user:
+            if int(datetime.now().strftime('%y%m%d%H%M')) >= int(user.date.strftime('%y%m%d%H%M')) + 30:
+                payment = PaymentStatus.objects.update(earnings_review =  True)
+            if int(datetime.now().strftime('%y%m%d%H')) >= int(user.date.strftime('%y%m%d%H')) + 1:
+                payment = PaymentStatus.objects.update(last_payment_upload=True)
+            if int(datetime.now().strftime('%y%m%d%H')) >= int(user.date.strftime('%y%m%d%H')) + 2:
+                payment = PaymentStatus.objects.update(details_cross_check=True)
+            if user.sponsored_post_check == True:
+                payment = PaymentStatus.objects.update(sponsored_post_verification=True)
+            if user.payment_successful == True:
+                payment = PaymentStatus.objects.update(deduction=True)
     return render(request, 'payment_status.html', {'status': status})

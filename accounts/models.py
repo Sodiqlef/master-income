@@ -1,12 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=11, unique=True)
-    profile_picture = models.ImageField(upload_to='images/', null=True)
+    profile_picture = CloudinaryField('profile_picture')
     facebook_link = models.URLField(unique=True)
     account_name = models.CharField(max_length=30)
     bank_name = models.CharField(max_length=50)
@@ -24,13 +25,14 @@ class CouponCode(models.Model):
     is_activated = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user} {self.pk}'
 
 
 class Earning(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='earning')
     daily_login = models.PositiveIntegerField(default=0)
     news_earned = models.IntegerField(default=0)
+    sponsored_post = models.IntegerField(default=0)
     approved_post = models.PositiveIntegerField(default=0)
     activities_earning = models.IntegerField(default=0)
     guider_bonus = models.IntegerField(default=0)
@@ -43,19 +45,24 @@ class Earning(models.Model):
     news_pk = models.TextField(default=0)
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user} {self.pk}'
 
 
 class Withdrawal(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='withdrawal')
     facebook_link = models.URLField()
-    account_details = models.TextField()
+    account_number = models.CharField(max_length=100, default='')
+    bank_name = models.CharField(max_length=100, default='')
+    account_name = models.CharField(max_length=100, default='')
     activities_earning_to_withdraw = models.PositiveIntegerField(null=True)
     guider_bonus_to_withdraw = models.PositiveIntegerField(null=True)
-    withdrawn = models.BooleanField(default=False)
+    sponsored_post_check = models.BooleanField(default=False)
+    payment_successful = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+    
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.user} {self.pk}'
 
 
 class PaymentStatus(models.Model):
@@ -69,8 +76,7 @@ class PaymentStatus(models.Model):
     made = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return f'{self.user}'
-
+        return f'{self.user} {self.pk}'
 
 
 

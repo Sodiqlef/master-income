@@ -1,41 +1,68 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. {% endblock %}
+{% block title %} {{block.super}} Withdrawal{% endblock %}
+{% block breadcrumb %} WITHDRAWAL {% endblock %}
+
 
 {% block content %}
 {% include 'messages.html' %}
-<blockquote> Please, before you proceed on withdrawal, you should read through our withdrawal rules below and make sure you adhere to them.  </blockquote>
-<h4>WITHDRAWAL RULES</h4>
+<p id="rules"> Please, before you proceed on withdrawal, you should read through our withdrawal rules below and make sure you adhere to them.  </p>
+<br><h6><b>ACTIVITIES POINT WITHDRAWAL RULES ONLY</b></h6>
 <ol>
-    <li>You cannot withdraw more than you've earned</li>
+    <li>Minimum point to withdraw (#3,000)</li>
     <li>You can only withdraw in <b class="red"> multiple of 1500 in activities earning </b> and
-        <b class="red"> multiple of 1000 in guider bonus</b></li>
-    <li>You should leave any field you ain't withdrawing from as 0. Please both fields can't be 0</li>
-    <li>You can't withdraw less than 1500 from your activities earning</li>
-    <li>You can't withdraw less than 1000 from your guider bonus</li>
-    <li>You must have updated your profile before processing withdrawal</li>
-    <li>Do not click the withdraw button more than once, else your earnings will be deducted and payment wouldn't be made</li>
+        <b class="red"> payment in multiple of (#1,500)</b></li>
+    <li>Activities points above #10,000 all points are paid in full.</li>
+    <li>Before placing activities point withdrawal, kindly check the conversion rate always.</li>
 </ol>
 
+    <br><h6><b>GUILDER BONUS POINT WITHDRAWAL RULES ONLY</b></h6>
+
+<ol>
+<li>Minimum point to withdraw (1,000)</li>
+<li>You can only withdraw in <b class="red"> multiple of 1000 </b>and payment in <b class="red">multiple of (1,000)</b></li>
+<li>No conversion rate is applied.</li>
+</ol>
+
+<br><h6><b>BOTH ACTIVITIES POINTS AND GUILDER BONUS POINT WITHDRAWAL</b></h6>
+
+<ol>
+<li>Minimum points to withdraw 3000 and 1000 points respectively</li>
+<li>Both withdrawal above 15,000 point, all points are paid in full.</li>
+<li>Additional #2,000 for withdrawal of 20,000 points above.</li>
+<li>Before placing your withdrawal, kindly check the conversion rate for activities points withdrawal.</li>
+<li class="red"><b>You should leave any field you ain't withdrawing from as 0. Please both fields can't be 0</b></li>
+</ol><br>
 
 <strong> ACTIVITIES EARNING: {{earning.activities_earning_remain}} <br>
 GUIDER BONUS: {{earning.guider_bonus_remain}}</strong><br>
 <br>
 
 
-{% if week == 2 and time == 8%}
+
 
 {% if request.user.profile %}
-<form method="post" novalidate>
+{% if request.user.withdrawal %}
+
+<center class="alert alert-success"><strong class="text-uppercase">You Have Withdrawn already Check back next wednesday.</strong></center>
+{% else %}
+{% if week == 6 and time >= 18 and time <= 19 %}
+<form method="post" >
     {% csrf_token %}
 {% include 'widget.html' %}
-    <input type="submit" class="btn btn-lg btn-block" value="WITHDRAW">
+<label>
+    <input type="checkbox" required>
+        <small> By clicking on withdrawal, you would have read and agreed to our
+        <a href="#rules"> Withdrawal rules </a> 
+</label>
+    <input type="submit" class="btn btn-dark btn-block" value="WITHDRAW">
     </form>
+    {% else %}
+    <center class="alert alert-success"><strong >WITHDRAWAL IS ONLY ON saturdays 10am TILL 12pm</strong></center>
+    {% endif %}
+    {% endif %}
 {% else %}
-<center class="red"><strong class="text-uppercase">please create a profile first</strong></center>
-{% endif %}
-{% else %}
-<b class="alert alert-info"> Withdrawal Period is only on wednesday 7pm to 8pm </b>
+<center class="text-uppercase alert alert-success"><strong >please create a profile first</strong></center>
 {% endif %}
 
 {% endblock %}

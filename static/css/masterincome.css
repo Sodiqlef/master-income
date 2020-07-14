@@ -1,5 +1,5 @@
 .navbar{
-    background-color: #a1b;
+    background-color: green;
     color: white;
     font-family: algerian, Courier, fantasy;
 
@@ -9,14 +9,14 @@
 
 }
 .nav-link{
-    background-color: #aa11bb;
+    background-color: green;
     color: white;
     font-family: algerian, Courier, fantasy;
     font-weight: bold;
 }
 .nav-link:hover{
     background-color: white;
-    color: #a1b;
+    color: green;
     font-family: Courier, fantasy;
     font-weight: bold;
 }
@@ -25,13 +25,14 @@ h1,h2,h3,h4,h5,h6,strong{
 }
 
 .breadcrumb{
-    background-color: #a0b;
+    background-color: green;
 }
 .btn{
-    background-color: purple;
+    background-color: green;
+    border-color: green;
     color: white;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-weight: bolder;
+    border-radius: 25px;
 }
 .btn:hover{
     color: white;
@@ -41,11 +42,8 @@ table{
 }
 th{
     color: white;
-    background-color: purple;
+    background-color: green;
     border-style: solid;
-}
-tr:nth-child(even){
-    background-color: #e8f;
 }
 td{
     text-align: center;
@@ -59,25 +57,22 @@ td{
     padding-left: 5%;
     padding-right: 5%;
     text-align: center;
-    background-color: purple;
+    background-color: green;
 }
 .list-group-item{
-    color: purple;
+    color: green;
     font-family: serif;
     font-weight: bolder;
 }
 .list-group-item:hover{
-    background-color: purple;
+    background-color: green;
     color: white;
     text-decoration: none;
-}
-p{
-    font-family: "Segoe UI", Monaco, serif;
 }
 .lodge{
     border-style: solid;
     border-width: 5px;
-    border-color: purple;
+    border-color: green;
 }
 .page-link{
     text-align: center;
@@ -103,26 +98,26 @@ p{
     font-size: 120%;
 }
 .social_img{
-    width: 10%;
-    height: 10%;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
 }
 .social_img:hover{
-    width: 12%;
-    height: 12%;
+    border-radius: 1px;
 }
 .pre{
     white-space: pre-line;
+    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
 }
 
 footer{
     text-align: center;
-    background-color: #1b1e21;
+    background-color: #222;
 }
 footer img{
     text-align: center;
-    width: 12rem;
-    height: 12rem;
+    width: 9rem;
+    height: 6rem;
     border-radius: 50%;
 }
 .profile-picture{
@@ -133,4 +128,16 @@ footer img{
 }
 footer h3{
     font-family: sans-serif;
+}
+footer a{
+    color: #ddd;
+    text-decoration: underline;
+
+}
+footer a:hover{
+    font-weight: bold;
+    color: #dddddd;
+}
+.share{
+    color: blue;
 }

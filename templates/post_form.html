@@ -1,19 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. {% endblock %}
+{% block meta %}<meta name="description" content="Create your post and let it be approved">{% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
 
+{% block title %}  Create post{% endblock %}
+{% block breadcrumb %} Create Post {% endblock %}
 {% block content %}
 <strong>Before Submitting post, read the following rules carefully.</strong>
+<br>
+<br>
+<b>Posting Rules</b><br><br>
 <ol>
-    <li>Do not submit a false post</li>
-    <li>Make sure the title of the post goes with the subject</li>
-    <li>Read your post carefully to avoid submitting mistakes such as typographical error</li>
-    <li>Make sure the post you are submitting fits the category you're submitting to.</li>
+<li>Multiple post not allowed, You must browse through the site to ensure that your post has not been created before else, your post might not be approved.</li>
+<li>False post not allowed: Before submitting anypost, verify if all information is correct with proper editing.</li>
+<li>Posting outdated news is Prohibited</li>
+<li>Copying of post from other website without proper editing or rewriting, your post won't be approved.</li>
+<li>Submission of image with proper illustration is very compulsory.</li>
 </ol>
+
+<b>Breaking any of the above rules might get your post deleted, without earning.</b><br><br>
     {% include 'messages.html' %}
 <form method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
 {% include 'widget.html' %}
-    <input type="submit" class="btn btn-lg btn-block btn-dark" value="S u b m i t">
+    <input type="submit" class="btn btn-block btn-dark" value="S u b m i t">
     </form>
 {% endblock %}

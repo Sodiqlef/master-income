@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from decouple import Csv, config
-import dj_database_url
 from django.contrib.messages import constants
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -23,15 +21,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'lw-y(a^@(p92r9)c6*=3udoxbu9kk(%#1t(3$6(saxfnss*so%'
 
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -47,6 +45,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'masterincome',
     'accounts',
+    'pwa',
 
 ]
 
@@ -88,9 +87,10 @@ WSGI_APPLICATION = 'affiliation.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 # Password validation
@@ -130,11 +130,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-SITE_ID = 1
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
     ]
+
+STATIC_ROOT = 'mafo'
 
 LOGOUT_REDIRECT_URL = 'home'
 LOGIN_REDIRECT_URL = 'home'
@@ -142,6 +143,7 @@ LOGIN_URL = 'login'
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+PWA_SERVICE_WORKER_PATH = os.path.join(BASE_DIR, 'static/js', 'serviceworker.js')
 
 MESSAGE_TAGS = {
     constants.ERROR: 'alert-danger',

@@ -1,126 +1,117 @@
-{% load static %}<!DOCTYPE html>
+﻿{% load static %} 
+{% load pwa %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    {% progressive_web_app_meta %}
+    {% block ad %}{% endblock %}
+    <meta name="google-site-verification" content="3aT_eg7kqQkqGYfAFydr-DKW7JFGXJ9oU93dNmHYP5o">
     <meta charset="UTF-8">
-    <title>{% block title %} Master Income {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block meta %}{% endblock %}
     <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}">
+    <link rel="manifest" href="{% static 'package.json' %}">
+    <title class="text-uppercase">{% block title %} Master Income {% endblock %}</title>
     <link rel="stylesheet" href="{%  static 'css/masterincome.css' %}?{% now 'U' %}">
     <link rel="icon" href="{%  static 'css/all.min.css' %}">
-    {% block link %} <link rel="manifest" href="{% static 'package.json' %}">{% endblock %}
+    <link rel="icon" href="{%  static 'img/logo.jpg' %}">
 </head>
-<div>
+
 {% block body %}
-    <div style="text-align: center;">
-    <strong style="font-family: Algerian, Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-size: 200%;">
-        <b style="color: red;">M</b>
-        <b style="color: blue;">A</b>
-        <b style="color: green;">S</b>
-        <b style="color: purple;">T</b>
-        <b style="color: brown;">E</b>
-        <b style="color: seagreen;">R</b>
-
-<b>-</b><strong></strong>
-        <b style="color: red;">I</b>
-        <b style="color: blue;">N</b>
-        <b style="color: green;">C</b>
-        <b style="color: purple;">O</b>
-        <b style="color: brown;">M</b>
-        <b style="color: seagreen;">E</b>
-
-        </strong>
-        </div>
-<nav class="navbar navbar-expand-lg ">
-    <p class="navbar-brand"></p>
+<div class="fixed-top position-sticky">
+    <nav class="navbar navbar-expand-lg" >
         {% if user.is_authenticated %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="fas fa-bars" style="color: #ffffff;"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="mainMenu">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i>Home <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'profile' %}"><span class="fas fa-house-user"></span>My Account</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'create_post' %}"><span class="fas fa-envelope-open-text"></span>Create Post</a>
-      </li>
-        <li class="nav-item">
-        <a class="nav-link" href="{% url 'password_change' %}"><i class="fas fa-user-cog"></i>Change Password</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}"><span class="fas fa-user-alt-slash"></span>Logout</a>
-      </li>
-
-        {% if user.is_staff%}
-        <li class="nav-item">
-         <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-        </li>
-            {% endif %}
-
-    </ul>
-      {% else %}
-
-      <div class="nav-item dropdown">
-          <form class="form-inline ml-auto">
-        <button class="nav-link dropdown-toggle btn" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #a1b;">
-
+        <strong style="font-family: algerian, broadway, pussycat;" class="mb-0"><img src="{% static 'img/logo.jpg' %}" class="navbar-brand mb-0" style="height: 3rem; width: 4rem; border-radius: 50%;">MASTER INCOME</strong>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fas fa-bars" style="color: #ffffff;"></span>
         </button>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item " href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
-          <a class="dropdown-item" href="{% url 'vendors' %}">Get Coupon</a>
-          <a class="dropdown-item" href="{% url 'package' %}">Master Income Package</a>
 
+        <div class="collapse navbar-collapse text-uppercase" id="mainMenu">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}"><i class="fas fa-home"></i>Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}"><span class="fas fa-house-user"></span>My Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_post' %}"><span class="fas fa-envelope-open-text"></span>Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'password_change' %}"><i class="fas fa-user-cog"></i>Change Password</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vendors' %}"><i class="fab fa-codepen"></i>Get coupon</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}"><span class="fas fa-user-alt-slash"></span>Logout</a>
+                </li>
+                {% if user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+
+            </ul>
+                {% else %}
+                <img src="{% static 'img/logo.jpg' %}" style="height: 3rem; width: 4rem; border-radius: 50%" class="navbar-brand">
+            <div class="nav-item dropdown">
+                <form class="form-inline ml-auto">
+                    <button class="nav-link dropdown-toggle btn" id="navbarDropdownMenuLink"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    style="background-color: green; padding-left: 1px; padding-right: 3px;">
+                    </button>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item " href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
+                        <a class="dropdown-item" href="{% url 'vendors' %}">Get Coupon</a>
+                        <a class="dropdown-item" href="{% url 'package' %}">Our Package</a>
+                    </div>
+
+                    <a href="{% url 'login' %}" class="btn btn-outline-dark text-light" style="border-color: white; background-color: green;">Log in</a>
+                    <a href="{% url 'signup' %}" class="btn ml-1" style="color: green; background-color: white; border-color: green;">Sign up</a>
+                </form>
+            </div>
         </div>
-
-          <a href="{% url 'login' %}" class="btn btn-outline-light text-light">Log in</a>
-          <a href="{% url 'signup' %}" class="btn ml-1" style="color: #909; background-color: white; border-color: #909;">Sign up</a>
-               </form>
-      </div>
-
-  </div>
-
-{% endif %}
-</nav>
+        {% endif %}
+    </nav>
 </div>
-    <b><marquee class="breadcrumb" style="color: purple; background-color: #e8f;" >Hello {{user.username| upper}}, Welcome to MASTER INCOME</marquee></b>
 
 
+<nav>
+    <b><marquee class="breadcrumb" style="color: green; background-color: #efe;
+    border-bottom: 2px solid;" ><!--Hello {{user.username| upper}}, Welcome to MASTER INCOME --> Launching Soon!!! Save the date: July 22nd 2020</marquee></b>
+</nav>
 
-    <div class="container mt-4 ml-auto ">
-        {% block categories %}
-        {% endblock %}
+<div class="container mt-4 ml-auto ">
+{% block categories %}
+{% endblock %}
+</div>
 
-    <nav aria-label="breadcrumb ">
-  <ol class="breadcrumb my-4" style="color: white;">
+<nav aria-label="breadcrumb " class="col-sm text-sm-center">
+    <ol class="breadcrumb text-uppercase" style="color: white;">
     {% block breadcrumb %}
-        {%  endblock %}
-  </ol>
+    {%  endblock %}
+    </ol>
 </nav>
-    </div>
-
-
-        <div style="border:  3px solid lightgrey">
 
 <div class="container">
-<div class="col-lg-12 "  style="text-align: right;">
-    <a href="#top" style=" color: purple" ><i class=" fas fa-arrow-circle-up" style="font-size: xx-large; position: fixed;"></i></a>
+    <div class="col-lg-12 "  style="text-align: right;">
+        <a href="#" style=" color: green" ><i class=" fas fa-arrow-circle-up" style="font-size: xx-large; position: fixed; bottom: 1px"></i></a>
 </div>
-    </div>
+</div>
+
 <div class="container">
-
-
-
 {% block content %}
-
-
 {%  endblock %}
-<br><br>
 </div>
 
-</div>
+
+<div class="container">
+        {% block carousel %}
+        {% endblock %}
+ </div>       
+
 
 
 {% block script %} {% endblock %}
@@ -128,46 +119,37 @@
 <script src="{%  static 'js/popper.min.js' %}"></script>
 <script src="{%  static 'js/bootstrap.min.js' %}"></script>
 <script src="{%  static 'js/all.min.js' %}"></script>
-
-</body>
+<br><br>
 {%  endblock body %}
+</body>
 
 
-<footer class="align-text-bottom text-light">
 
+<footer class="text-light" style="padding: 10px;">
     <div>
-        <h3>Fast Links</h3>
-<a class="" href="{% url 'home' %}">HOME</a>|
-<a class="" href="{% url 'profile' %}">MY ACCOUNT</a>|
-<a class="" href="{% url 'package' %}">MASTER INCOME PACKAGE</a>|
-<a class="" href="{% url 'vendors' %}">GET COUPON</a>|
-</div>
-
-    <div><br>
-        <h3>Social Links</h3>
-<a class="" href=""><img src="{% static 'img/telegram.jpeg' %}" class="social_img" alt="telegram"></a>|
-<a class="" href=""><img src="{% static 'img/facebook.png' %}" class="social_img" alt="facebook"></a>|
-<a class="" href=""><img src="{% static 'img/whatsapp.jpeg' %}" class="social_img" alt="whatsapp"></a>|
-<a class="" href=""><img src="{% static 'img/gmail.png' %}" class="social_img" alt="gmail"></a>|
-
+        <a class="" href="{% url 'home' %}">HOME</a>|
+        <a class="" href="{% url 'profile' %}">MY ACCOUNT</a>|
+        <a class="" href="{% url 'package' %}">MASTER INCOME PACKAGE</a>|
+        <a class="" href="{% url 'vendors' %}">GET COUPON</a>|
+        <a class="" href="{% url 'support_form' %}">CONTACT US</a>|
     </div>
-
-    <div><br>
-        <h3> Service Links </h3>
-<a class="" href="{% url 'terms_and_condition' %}">TERMS AND CONDITIONS</a>|
-<a class="" href="">PRIVACY POLICY</a>|
-<a class="" href="{% url 'advertise' %}">ADVERTISE WITH US</a>|
-<a class="" href="{% url 'disclaimer' %}">DISCLAIMER</a>|
-
-    </div>
-
     <img src="{% static 'img/logo.jpg' %}"><br>
-    <i><b>
+    <div>
+        <a class="" href="{% url 'terms_and_condition' %}">TERMS AND CONDITIONS</a>|
+        <a class="" href="{% url 'privacypolicy' %}">PRIVACY POLICY</a>|
+        <a class="" href="{% url 'advertise' %}">ADVERTISE WITH US</a>|
+        <a class="" href="{% url 'disclaimer' %}">DISCLAIMER</a>|
+        <a class="" href="{% url 'about-us' %}">ABOUT US</a>|
+
+    </div>
+    <pre>
+
+    <a class="" href="http://t.me/masters_income"><img src="{% static 'img/telegram.jpeg' %}" class="social_img" alt="telegram"></a>   <a class="" href="https://m.facebook.com/groups/277112313373670/?ref=group_browse"><img src="{% static 'img/facebook.png' %}" class="social_img" alt="facebook"></a>   <a class="" href=""><img src="{% static 'img/whatsapp.jpeg' %}" class="social_img" alt="whatsapp"></a>   <a class="" href=""><img src="{% static 'img/gmail.png' %}" class="social_img" alt="gmail"></a> </pre>
+
+    <tt>
     CONTACT DEVELOPER @ +2348165994421.<br>
-    Powered by SODALEX Inc.<br>
         All Rights Reserved.<br>
         copyright© 2020.
-        </b></i>
-
+        </tt>
 </footer>
 </html>

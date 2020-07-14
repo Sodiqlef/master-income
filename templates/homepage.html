@@ -1,0 +1,119 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Something Big is on it's way, and it's master income. You can click to check our packages">
+    <title> Master Income </title>
+    <link rel="stylesheet" href="{%  static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%  static 'css/masterincome.css' %}?{% now 'U' %}">
+    <link rel="icon" href="{%  static 'css/all.min.css' %}">
+    <link rel="icon" href="{%  static 'img/logo.jpg' %}">
+    <link rel="manifest" href="{% static 'package.json' %}">
+</head>
+<body>
+<div class="">
+    <b><marquee class="breadcrumb" style="color: #aa11bb;
+    background-color: whitesmoke;
+    border-bottom: 2px solid;" >Hello {{user.username| upper}}, Welcome to MASTER INCOME</marquee></b>
+</div>
+
+<div class="container">
+    <center><h4>The big thing is here!!!. It's <b style="color: #aa11bb">MASTER INCOME</b></h4></center>
+<p>Read through our packages to understand how to earn, but before then, you can add the site to home screen if you can see the pop up
+and if not, just follow this simple steps.</p>
+</div>
+
+<div class="container-fluid">
+<p>
+Master income program(MIP) is a ﬁnancial solution, not a quick rich scheme. It was created purposely to make some financial and economical changes  mostly in Nigeria and some countries in eradication of poverty.
+MIP is not a MMM, pyramid, or Ponzi scheme but a slow and steady scheme <br><br>
+
+<strong class="text-uppercase">HOW DO WE GENERATE REVENUE TO PAY MEMBERS? </strong><br>
+MIP has a different way of generating revenue. We generate our revenue by advertising product and service like every other advertising company.
+    Also we partner with different ads companies like Google ads, jumia, propeller ads, adﬂy etc.
+    And we also generate money from the forex market just to make sure all participant beneﬁt from the system with or without referral.<br><br>
+</p>
+<strong class="text-uppercase"> WHY SHOULD I JOIN MASTER INCOME PROGRAM? </strong><br>
+    <ul>
+    <li>Referral is absolutely guaranteed.</li>
+    <li> Our program is 💯 guaranteed.</li>
+    <li> You receive your payment which we called allowance here every Wednesday either aﬄiate  or referral point.</li>
+    <li> Registration fee is very affordable.</li>
+</ul><br><br>
+
+
+<strong class="text-uppercase"> HOW DO I EARN AND HOW MUCH CAN I EARN? </strong><br>
+<p>
+You can earn in two ways.
+</p>
+<ol>
+    <li>Your Activities point </li>
+
+    <ul>
+        <li> Viewing and reading of post - you earn 2 points (unlimited)</li>
+        <li> Posting topic - You earn 50 points for relevant, interesting post that get approved on the platform.</li>
+        <li> Sharing our sponsored post on Facebook - we post 2-4 post daily and you earn 100points each.</li>
+        <li> Day login - You earn 30points each day you login.</li>
+    </ul>
+
+    <li> Your affiliate point </li>
+    <ul>
+    <li> When you introduce your friend to participate in MIP forum, you earn #500,
+        the more people you guide to register  the more you have your money assuming you Register 10 people daily you gain #5000 .Enjoy!!!</li>
+    </ul>
+</ol>
+
+<strong class="text-uppercase">HOW DO I WITHDRAW?</strong><br>
+<p>
+kindly note that you can withdraw your earnings every Wednesday and are paid out in cash within 24 to 48hours when you earn up to #1500 minimum
+threshold and above in your wallet, you can request for withdrawal.<br><br>
+
+<strong class="text-uppercase">HOW TO REGISTER</strong><br>
+First you click on our menu button  and you click on <strong>Get coupon</strong> or you click <a href="{% url 'vendors' %}"><b>here</b></a>.<br>
+Pickout any coupon vendors and message or call him/her for coupon code.
+<b> If you are facing problem with any of our  coupon vendor kindly report to any vendor and the case will be directly to the admin,</b> Or you message admin via telegram<br>
+You proceed to sign up and ﬁll out your details and register.<br><br>
+
+<strong class="text-uppercase"> <b> Happy earning </b> </strong><br>
+(You can join our telegram group <a href="http://t.me/masters_income"><b>here</b></a>).
+</p>
+</div>
+
+
+<script src="{%  static 'js/jquery-3.5.1.min.js' %}"></script>
+<script src="{%  static 'js/popper.min.js' %}"></script>
+<script src="{%  static 'js/bootstrap.min.js' %}"></script>
+<script src="{%  static 'js/all.min.js' %}"></script>
+</body>
+<footer class="align-text-bottom text-light">
+
+        <div>
+
+<a class="" href="{% url 'home' %}">HOME</a>|
+<a class="" href="{% url 'profile' %}">MY ACCOUNT</a>|
+<a class="" href="{% url 'package' %}">MASTER INCOME PACKAGE</a>|
+<a class="" href="{% url 'vendors' %}">GET COUPON</a>|
+</div>
+
+
+    <img src="{% static 'img/logo.jpg' %}"><br>
+
+<a class="" href="{% url 'terms_and_condition' %}">TERMS AND CONDITIONS</a>|
+<a class="" href="">PRIVACY POLICY</a>|
+<a class="" href="{% url 'advertise' %}">ADVERTISE WITH US</a>|
+<a class="" href="{% url 'disclaimer' %}">DISCLAIMER</a>|
+
+    </div>
+        <pre>
+
+<a class="" href="http://t.me/masters_income"><img src="{% static 'img/telegram.jpeg' %}" class="social_img" alt="telegram"></a>   <a class="" href="https://m.facebook.com/groups/289401049112314/?ref=group_browse"><img src="{% static 'img/facebook.png' %}" class="social_img" alt="facebook"></a>   <a class="" href=""><img src="{% static 'img/whatsapp.jpeg' %}" class="social_img" alt="whatsapp"></a>   <a class="" href=""><img src="{% static 'img/gmail.png' %}" class="social_img" alt="gmail"></a> </pre>
+
+    <p>
+    CONTACT DEVELOPER @ +2348165994421.<br>
+        All Rights Reserved.<br>
+        copyright© 2020.
+        </p>
+
+</footer>
+</html>

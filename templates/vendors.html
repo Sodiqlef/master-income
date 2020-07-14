@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block meta %}<meta name="description" content="You call any of our coupon vendors or message them on WhatsApp, make payment to their account and they will send you a Coupon code you can use to activate your account.">{% endblock %}
+{% block title %} {{block.super}} Vendors {% endblock %}
+{% block breadcrumb %} <small> Get Coupon </small> {% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
 
 {% block content %}
 <p>We prepare a payment method for you to activate your account.</p>
@@ -10,21 +16,21 @@
 <strong>08118933498</strong>
     <p>Whatsapp only</p>
 
-<table border="1" class="table">
-    {% for vendor in vendors %}
+<table class="table table-striped table-bordered table-hover table-responsive">
     <tr>
         <th>NAME</th>
         <th>PHONE NUMBER</th>
         <th>WHATSAPP</th>
     </tr>
+    {% for vendor in vendors %}
 
     <tr>
         <td>{{vendor.name}}</td>
 
         <!-- Note that vendor.number must not start with 0 in the DB -->
         <td>0{{vendor.number}}</td>
-        <td ><a  href="https://wa.me/234{{vendor.number}}?text=Hello, i want to purchase Master income's coupon code ">
-            <img class="whatsapp" src=" /static/img/whatsapp.jpeg " alt="whatsapp" style="height: 4rem; border-radius: 50%"></a></td>
+        <td ><a  href="https://wa.me/234{{vendor.number}}?text=Hello, i want to purchase Master income coupon code ">
+            <img src=" /static/img/whatsapp.jpeg " alt="whatsapp" style="height: 2rem; border-radius: 50%"></a></td>
     </tr>
         {% endfor %}
 </table>

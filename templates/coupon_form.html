@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. {% endblock %}
+{% block title %}  Activate account {% endblock %}
+
+{% block breadcrumb %}
+Activate Your Account
+{% endblock %}
 
 {% block content %}
 {% include 'messages.html' %}
@@ -11,10 +15,11 @@
 {% else %}
 <form method="post" novalidate>
     {% csrf_token %}
-        <small class="text-uppercase">Leave the guider bonus as <b class="red text-lowercase"> none </b> if nobody referred you.</small>
+        <strong class="text-uppercase">Leave the guider bonus as <b class="red text-lowercase"> none </b> if nobody referred you.</strong>
+        <strong class="text-uppercase">If you have no coupon, click <a href="{% url 'vendors' %}">here</a> to get one</strong>
 {% include 'widget.html' %}
 
-    <input type="submit" value="ACTIVATE ACCOUNT" class="btn btn-lg btn-block btn-dark">
+    <input type="submit" value="ACTIVATE ACCOUNT" class="btn btn-block btn-dark">
     </form>
 
 

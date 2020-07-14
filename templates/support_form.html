@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 
-{% block title %} {{block.super}}. {% endblock %}
+{% block title %} {{block.super}} Support {% endblock %}
+{% block breadcrumb %} Contact Us {% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
 
 {% block content %}
     {% include 'messages.html' %}
@@ -10,4 +14,9 @@
 {% include 'widget.html' %}
     <input type="submit" value="S U B M I T" class="btn btn-dark btn-block">
     </form>
+
+<p>Feel free to contact us using the above form for your suggestion, 
+    feedback or questions regarding the platform, we will try to get in touch with you as soon as possible.
+     Alternatively, you can contact our technical admin below to resolve your issues</p>
+<p class="blockquote">+2348165994421</p>
 {% endblock %}

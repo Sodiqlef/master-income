@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
-{% block title %} {{block.super}}. Sign Up {% endblock %}}
+{% block title %} {{block.super}} Sign Up {% endblock %}}
+{% block breadcrumb %} Join Us Now {% endblock %}
+
 
 {% block content %}
     {% include 'messages.html' %}
 
-<form method="post" novalidate>
+<form method="post" >
     {% csrf_token %}
     {% include 'widget.html' %}
-    <input type="submit" class="btn btn-lg btn-block btn-dark" value="Register">
+    <label>
+        <input type="checkbox" required>
+            <small> By signing up to Master Income, you would have read and agreed to our
+            <a href="{% url 'terms_and_condition' %}"> terms of service </a> and also our 
+            <a href=""> privacy policy</a> </small>
+    </label>
+    <!-- <input type="submit" class="btn btn-block btn-dark" value="Register"> -->
+<br><br>
+    <center class="alert alert-success "><strong > Registration will commence on the launching date, July 22nd 2020.</strong></center>
 </form>
 {% endblock %}

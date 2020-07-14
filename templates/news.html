@@ -1,18 +1,35 @@
 {% extends 'base.html' %}
-{% block title %} {{block.super}}. Sign Up {% endblock %}}
+{% block meta %}<meta name="description" content="{{posts.title}}">{% endblock %}
+{% block ad %}
+<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script> {% endblock %}
+
+{% block title %} {{posts.title}} {% endblock %}}
+
 
 
 {% block content %}
 {{ block.super}}
-<h3> {{posts.title}}</h3>
+<center><h5> {{posts.title|upper}}</h5>
+<img src="{{posts.post_image.url}}" style="border-radius: 1px; width: 18rem;" ></center><br>
 <small>
     <i class="fas fa-user"></i>{{posts.created_by}}
-    <i class="fas fa-clock"></i>{{posts.date}}
+    <i class="fas fa-clock"></i>{{posts.date.date}}
 </small><br><br>
-<p class="pre">{{posts.post}}</p><br>
+<p class="pre text-">{{posts.post}}</p><br>
 
-</div>
-<button onclick="window.print()" class="btn btn-dark"> PRINT POST</button>
+<p style="border-top: 1px solid green"></p>
+<center>
+    <button onclick="window.print()" class="btn btn-dark">
+        PRINT <span class="badge badge-light"><i class="fas fa-print" style="color: #f22"></i> </span>
+    </button>
+    <a type="button" class="btn btn-dark text-light" href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.mastersincome.com%2Fpost%2F{{posts.pk}}" target="_blank">
+        SHARE <span class="badge badge-light"><i class="fab fa-facebook-f" style="color: blue"></i> </span>
+    </a>
+    <a type="button" class="btn btn-dark" href="whatsapp://send?text={{posts.post}}" data-action="share/whatsapp/share">
+        SHARE <span class="badge badge-light"><i class="fab fa-whatsapp" style="background-color: green; color: white;"></i> </span>
+    </a>
+</center>
 
 
 {% endblock %}
