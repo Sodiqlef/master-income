@@ -7,7 +7,7 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=11, unique=True)
-    profile_picture = models.ImageField(upload_to='profile_picture')
+    profile_picture = CloudinaryField('profile_picture')
     facebook_link = models.URLField(unique=True)
     account_name = models.CharField(max_length=30)
     bank_name = models.CharField(max_length=50)
