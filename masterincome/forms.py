@@ -1,12 +1,5 @@
 from django import forms
-from .models import Post, Support, SponsoredPost
-
-
-class PostForm(forms.ModelForm):
-
-    class Meta:
-        model = Post
-        fields = ['title', 'post', 'post_image', 'category']
+from .models import Support, SponsoredPost
 
 
 class SupportForm(forms.ModelForm):

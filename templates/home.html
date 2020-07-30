@@ -10,10 +10,10 @@
 {% block categories %}
     {% include 'messages.html' %}
 
-{% if user.is_authenticated and not user.coupon and not user.profile %}
+<!--{% if user.is_authenticated and not user.coupon and not user.profile %}
 <strong>Your registration progress:</strong>
 <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
         style="width: 33%;" aria-valuenow="33"aria-valuemin="0" aria-valuemax="100">33%
   </div>
 </div>
@@ -22,7 +22,7 @@
 {% elif user.coupon and not user.profile %}
 <strong>Your registration progress:</strong>
 <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
        style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">66%
 
   </div>
@@ -32,77 +32,108 @@
 {% elif user.profile and not user.coupon %}
 <strong>Your registration progress:</strong>
 <div class="progress">
-  <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
        style="width: 66%;" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100">66%
 
   </div>
 </div>
 <strong>Complete it in your <a href="{% url 'profile' %}"> 'MY ACCOUNT'</a></strong>
-{% endif %}
+{% endif %}-->
 
 
-<!-- Button trigger modal -->
-<center><button type="button" class="btn btn-secondary text-uppercase" data-toggle="modal" data-target="#exampleModal"
-                style="background-color: black; border-style: hidden;">
-  POPULAR CATEGORIES
-</button></center>
-<br>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ALL CATEGORIES</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <b>
-<a href="{% url 'business' %}">BUSINESS</a><br>
-<a href="{% url 'politics' %}">POLITICS</a><br>
-<a href="{% url 'sport' %}">SPORT</a><br>
-<a href="{% url 'education' %}">EDUCATION</a><br>
-<a href="{% url 'entertainment' %}">ENTERTAINMENT</a><br>
-<a href="{% url 'health' %}">HEALTH</a><br>
-<a href="{% url 'other' %}">OTHER</a>
-</b>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
+
 
 {% endblock %}
 
 {% block breadcrumb %}
-    <small class="breadcrumb-item" style="color: white;">Total Post: {{post_count}}</small>
-    <small class="breadcrumb-item" style="color: white;">Total Users: {{user_count}}</small>
-
 {% endblock %}
 
 
 {% block content %}
 
-    {% for post in posts %}
-<div class="row justify-content-center">
-    <div class="card text-center " style="width: 18rem;">
-  <img class="card-img-top" style="height: 10rem;" src="{{post.post_image.url}}" alt="{{post.title}}">
+<div class="w3-row-padding w3-padding-16 w3-center ">
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated rollIn">
+  <img src="{% static 'img/invest1.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+  <h2 class="">OUR MISSION</h2>
+  <p class="w3-container">Our aim and objective is to Provide progressive and superior financial solution to every youth entrepreneurs and
+    various oppotunities options to interested participants willing to invest legitimately with us for as low as 1500 naira.</p>
+  </div>
+  </center>
+
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated">
+    <img src="{% static 'img/invest2.jpg' %}" class="profile-picture " style="border-radius: 1%; width: 100%;" >
+    <h2>Our Vision</h2>
+    <p class="w3-container">To be leading African financial service provider, delivering superior solutions to our customers.</p>
+    </div>
+  </center>
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated">
+    <img src="{% static 'img/invest6.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+    <h2  class="animated bounceInDown">About MASTER INCOME</h2>
+    <p class="w3-container">Master Income is an online investment platform created solely to empower, inspire, entertain and provide assist to young entrepreneurs.</p>
+    </div>
+  </center>
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated">
+    <img src="{% static 'img/invest3.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+    <h2>What You need doing</h2>
+    <p class="w3-container">Invest and relax!!!. What else? Just come online to earn your daily Sponsored post then after 15 days you withdraw and get paid immediately. Simple!</p>
+    </div>
+  </center>
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated ">
+    <img src="{% static 'img/invest5.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+    <h1>Grow Your Money</h1>
+    <p class="w3-container">"It's not how much money you make, but how much money you keep, how hard it works for you, and how many generations you keep it for." - Robert Kiyosaki</p>
+    </div>
+  </center>
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated ">
+    <img src="{% static 'img/invest4.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+    <h2  class="">Our Plan And How To Earn</h2>
+    <p class="w3-container"></p>
+    <a href="{% url 'package' %}" class="btn btn-success">Read More</a> 
+  </div><br>
+  </center>
+
+  <center class="w3-quarter scroll-animations">
+    <div class="w3-card-4 animated">
+    <img src="{% static 'img/act-now.jpg' %}" class="profile-picture" style="border-radius: 1%; width: 100%;" >
+    <h1>Activation</h1>
+    <p class="w3-container">Create your own account and start earning from now. There are three steps to Registration.</p>
+    <a href="{% url 'signup' %}" class="btn btn-success">Get Started  </a>
+      </divr>
+  </center>
+</div>
+
+
+
+<!--    {% for post in posts %}
+    <div class="row justify-content-center" id="keyword">
+  <div class="card text-center " style="width: 18rem;">
+    <img class="card-img-top" style="height: 10rem;" src="{{post.post_image.url}}" alt="{{post.title}}">
   <div class="card-body">
     <h5 class="card-title">{{post.title|title}}</h5>
 <small>
     <i class="fas fa-user"></i>{{post.created_by}}
     <i class="fas fa-clock"></i>{{post.date.date}}
 </small><br>
-      <p class="card-text">{{post.post|slice:"75"}}...</p>
+      <p class="card-text">{{post.post|slice:"75"|safe}}...</p>
     <a href="{% url 'post' post.pk %}" class="btn btn-dark">READ MORE</a>
   </div>
     </div>
     </div>
 <br>
-    {% endfor %}
+    {% endfor %} -->
+  
 
 {% if posts.has_other_pages %}
 <nav aria-label="Posts Pagination" class="mb-4">
@@ -154,4 +185,7 @@
   </div>
   </div>
   
+{% endblock %}
+{% block script %}
+
 {% endblock %}

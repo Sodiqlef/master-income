@@ -8,19 +8,37 @@ Activate Your Account
 
 {% block content %}
 {% include 'messages.html' %}
-
-{% if user.coupon.is_activated is True %}
+<style>
+    body{
+        background-color: #cfc;
+    }
+    .form-control{
+        background-color: #cfc;
+    }
+    .form-control:focus{
+        background-color: #cfc;
+    }
+</style>
+{% if user.coupon.is_activated is True or user.coupon2.is_activated is True%}
 <strong class="red">YOU HAVE ACTIVATED YOUR ACCOUNT ALREADY</strong>
 
 {% else %}
-<form method="post" novalidate>
-    {% csrf_token %}
-        <strong class="text-uppercase">Leave the guider bonus as <b class="red text-lowercase"> none </b> if nobody referred you.</strong>
-        <strong class="text-uppercase">If you have no coupon, click <a href="{% url 'vendors' %}">here</a> to get one</strong>
-{% include 'widget.html' %}
+    <form method="post" novalidate>
+        <fieldset class="w3-card-4 bg-light border-success ">
+            <legend class="bg-success text-center text-light">Activate {{user.username}}'s' account</legend>
+        {% csrf_token %}
+            <strong class="text-uppercase">Leave the guider bonus as <b class="red text-lowercase"> none </b> if nobody referred you.</strong>
+            <strong class="text-uppercase">If you have no coupon, click <a href="{% url 'vendors' %}" class="text-success">here</a> to get one</strong>
+    {% include 'widget.html' %}
+    
+    <input type="submit" value="ACTIVATE ACCOUNT" class="btn btn-block btn-success">
+</fieldset>
+</form>
+</div>
+</div>
+</div>
+</div>
 
-    <input type="submit" value="ACTIVATE ACCOUNT" class="btn btn-block btn-dark">
-    </form>
 
 
 {% endif %}

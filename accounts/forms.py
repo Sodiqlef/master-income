@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import CouponCode, Withdrawal, Earning, Profile
+from .models import BronzeCoupon, Earning, Profile, SilverCoupon, GoldCoupon, UltimateCoupon, DiamondCoupon
 
 
 class SignUpForm(UserCreationForm):
@@ -11,13 +11,41 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
-class CouponCodeForm(forms.ModelForm):
+class BronzeCouponForm(forms.ModelForm):
 
     class Meta:
-        model = CouponCode
+        model = BronzeCoupon
+        fields = ['coupon_code', 'guider']
+
+
+class SilverCouponForm(forms.ModelForm):
+
+    class Meta:
+        model = SilverCoupon
+        fields = ['coupon_code', 'guider']
+
+
+class GoldCouponForm(forms.ModelForm):
+
+    class Meta:
+        model = GoldCoupon
+        fields = ['coupon_code', 'guider']
+
+
+class DiamondCouponForm(forms.ModelForm):
+
+    class Meta:
+        model = DiamondCoupon
+        fields = ['coupon_code', 'guider']
+
+
+class UltimateCouponForm(forms.ModelForm):
+
+    class Meta:
+        model = UltimateCoupon
         fields = ['coupon_code', 'guider']
 
 
@@ -29,7 +57,8 @@ class ProfileForm(forms.ModelForm):
 
 
 class WithdrawalForm(forms.ModelForm):
+    withdraw = forms.CharField()
 
     class Meta:
-        model = Withdrawal
-        fields = ['activities_earning_to_withdraw', 'guider_bonus_to_withdraw']
+        model = Earning
+        fields = ['withdraw']

@@ -2,142 +2,321 @@
 {% load static %}
 {% block title %}  {{user.username}} {{block.super}} Profile{% endblock %}
 
-{% block breadcrumb %}
-<small>{{user.username}} PROFILE</small>
-{% endblock %}
 {% block content %}
     {% include 'messages.html' %}
 
-{% if user.profile.profile_created is not True %}
-<div style="padding-left: 1rem; padding-right: 1rem;">
-<a href="{% url 'profile_form' %}" class="btn btn-block btn-dark ">Update Profile</a>
-{% else %}
-<div class="row justify-content-center">
+{% if user.bronze.is_activated is not True and user.silver.is_activated is not True and user.gold.is_activated is not True and user.diamond.is_activated is not True and user.ultimate.is_activated is not True%}
+<center>
+<div class="w3-quarter">
+<div class="w3-card-4 text-center " style="width: 18rem;">
+  <div class="card-header" style="background-color: #f84;">BRONZE PLAN @ 1500</div>
+<div class="card-body">
+  <h5 class="card-title"> 15 days PLAN </h5>
 
-<img class="profile-picture" src="{{user.profile.profile_picture.url}}">
+    <p class="card-text">Activation Bonus: 250</p>
+    <p class="card-text">Sponsored Post 1500 </p>
+    <p class="card-text">50% of Capital : 750</p>
+</div>
+    <div class="card-footer">Total earnings: 2500 </div>
+  <a href="{% url 'bronze_form' %}" class="btn btn-block btn-success">Activate Plan</a>
+</div>
+<br> <br> 
+</div>
+
+<div class="w3-quarter">
+  <div class="w3-card-4 text-center " style="width: 18rem;">
+    <div class="card-header" style="background-color: silver;">SILVER PLAN @ 2500</div>
+  <div class="card-body">
+    <h5 class="card-title"> 15 days PLAN </h5>
+  
+      <p class="card-text">Activation Bonus: 1250</p>
+      <p class="card-text">Sponsored Post 1500 </p>
+      <p class="card-text">50% of capital : 1250</p>
+  </div>
+      <div class="card-footer">Total earnings: 4000 </div>
+      <a href="{% url 'silver_form' %}" class="btn btn-block btn-success">Activate Plan</a>
     </div>
-{% endif %}
-<br>
-{% if user.coupon.is_activated is not True %}
-<a href="{% url 'coupon_form' %}" class="btn btn-block btn-dark">Activate Account</a>
-{% else %}
-<table class="table lodge">
-    <tr >
-        <td><b>ACTIVITIES POINT </b></td>
-        <td><b>{{earning.activities_earning_remain}}</b></td>
-    </tr>
-    <tr>
-        <td><b>GUIDER BONUS POINT</b></td>
-        <td><b>{{earning.guider_bonus_remain}}</b></td>
+  <br> <br> 
+  </div>
 
-    </tr>
-</table>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-dark text-uppercase" data-toggle="modal" data-target="#exampleModal">
-  conversion - rate
-</button>
+<div class="w3-quarter">
+  <div class="w3-card-4 text-center " style="width: 18rem;">
+    <div class="card-header" style="background-color: gold;">GOLD PLAN @ 5000</div>
+  <div class="card-body">
+    <h5 class="card-title"> 15 days PLAN </h5>
+  
+      <p class="card-text">Activation Bonus: 2750</p>
+      <p class="card-text">Sponsored Post 1500 </p>
+      <p class="card-text">75% of Capital : 3750</p>
+  </div>
+      <div class="card-footer">Total earnings: 8000 </div>
+  <a href="{% url 'gold_form' %}" class="btn btn-block btn-success">Activate Plan</a>
+  </div>
+  <br> <br> 
+  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">WEEKLY CONVERSION RATE</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        1500 will be deducted from your activities point.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-      </div>
+<div class="w3-quarter">
+  <div class="w3-card-4 text-center " style="width: 18rem;">
+    <div class="card-header" style="background-color: #33ffff;">Diamond PLAN @ 10000</div>
+  <div class="card-body">
+    <h5 class="card-title"> 15 days PLAN </h5>
+  
+      <p class="card-text">Activation Bonus: 4500</p>
+      <p class="card-text">Sponsored Post 1500 </p>
+      <p class="card-text">100% of Capital : 10000</p>
+  </div>
+      <div class="card-footer">Total earnings: 16000 </div>
+      <a href="{% url 'diamond_form' %}" class="btn btn-block btn-success">Activate Plan</a>
+    </div>
+  <br> <br> 
+  </div>
+
+<div class="w3-quarter">
+  <div class="w3-card-4 text-center " style="width: 18rem;">
+    <div class="card-header" style="background-color: #faf;">ULTIMATE PLAN @ 15000</div>
+  <div class="card-body">
+    <h5 class="card-title"> 15 days PLAN </h5>
+  
+      <p class="card-text">Sign Up Bonus: 7500</p>
+      <p class="card-text">Sponsored Post 1500 </p>
+      <p class="card-text">100% of Capital : 15000</p>
+  </div>
+      <div class="card-footer">Total earnings: 24000 </div>
+      <a href="{% url 'ultimate_form' %}" class="btn btn-block btn-success">Activate Plan</a>
     </div>
   </div>
-</div><br><br>
 
-<ul class="list-group" >
-    <li><a href="{% url 'withdrawal_form' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: green; border-style: dashed;">WITHDRAWAL</a></li>
+</center>
+
+{% else %}
+{% if user.profile.profile_created is not True %}
+<div style="padding-left: 1rem; padding-right: 1rem;">
+<a href="{% url 'profile_form' %}" class="btn btn-block btn-info text-uppercase ">Update Profile</a>
+
+{% else %}
+<div class="w3-card-4" style="width: 100%;">
+<div class="w3-display-container">
+<img class="" src="{{user.profile.profile_picture.url}}" style="width: 100%;">
+<div class="w3-display-bottomright w3-container text-success" style="background-color: white; font-weight: bolder;">
+<i class="fas fa-user "></i> {{user.username|upper}}
+</div>
+    </div>
+  
+    <div class="w3-container table-responsive">
+      <br>
+      <p class="text-dark"><i class="fas fa-envelope fa-fw w3-margin-right text-success"></i>{{user.email}}</p>
+      <p class="text-dark"><i class="fas fa-phone-alt fa-fw w3-margin-right text-success"></i>{{user.profile.phone_number}}</p>
+      <p class="text-dark"><i class="fab fa-facebook fa-fw w3-margin-right text-success"></i>{{user.profile.facebook_link}}</p>
+      <a class="btn btn-outline-success btn-block">Withdraw</a><a class="btn btn-outline-success btn-block">Sponsored Post</a>
+    </div>
+</div>
+{% endif %}
+<br>
+{% if user.bronze.is_activated %}
+<center><b><b class="fas fa-money-check"></b>{{bronze}}</b></center>
+<div class="progress">{% if bronze_percentage <= 5 %}{{bronze_percentage}}%{% endif %}
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+        style="width: {{bronze_percentage}}%;" aria-valuenow="{{bronze_percentage}}"aria-valuemin="0" aria-valuemax="100"><b style="color: black;">{% if bronze_percentage > 5 %}{{bronze_percentage}}%{% endif %}</b> 
+  </div>
+</div>
+{% elif user.silver.is_activated %}
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+        style="width: {{silver_percentage}}%;" aria-valuenow="{{silver_percentage}}"aria-valuemin="0" aria-valuemax="100">{{silver_percentage}}%
+  </div>
+</div>
+{% elif user.gold.is_activated %}
+<center>{{gold}}</center>
+
+<div class="progress" style="height: 1rem;">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+        style="width: {{gold_percentage}}%; " aria-valuenow="{{gold_percentage}}"aria-valuemin="0" aria-valuemax="100">{{gold_percentage}}%</center>
+  </div>
+</div>
+{% elif user.diamond.is_activated %}
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+        style="width: {{diamond_percentage}}%;" aria-valuenow="{{diamond_percentage}}"aria-valuemin="0" aria-valuemax="100">{{diamond_percentage}}%
+  </div>
+</div>
+{% elif user.ultimate.is_activated %}
+<div class="progress">
+  <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
+        style="width: {{ultimate_percentage}}%;" aria-valuenow="{{ultimate_percentage}}"aria-valuemin="0" aria-valuemax="100">{{ultimate_percentage}}%
+  </div>
+</div>
+{% endif %}
+
+<br>
+
+  <div class="w3-card-4" style="width: 100%;">
+    <div class="w3-display-container">
+<center><h3>INVESTMENT DETAILS</h3></center>
+<div class="w3-container">
+<table class="table lodge text-uppercase border-success" style="padding: 1px;">
+    
+        {% if user.bronze.is_activated %}
+        <tr class="text-uppercase">
+        <td><b>Investment Plan </b></td>
+        <td><small style="background-color: brown; color: white; border: 1px solid; border-radius: 5px; padding: 3px;">bronze</small></td>
+        </tr>
+        <tr>
+          <td><b>Investment Capital</b></td>
+          <td> 1500</td>
+        </tr>
+        {% elif user.silver.is_activated %}
+        <tr >
+        <td><b>Investment Plan </b></td>
+        <td><b>silver</b></td>
+        </tr>
+        <tr>
+          <td><b>Investment Capital</b></td>
+          <td> 2500</td>
+        </tr>
+        {% elif user.gold.is_activated %}
+        <tr class="text-uppercase">
+        <td><b>Investment Plan </b></td>
+        <td><b>gold</b></td>
+        </tr>
+        <tr>
+          <td><b>Investment Capital</b></td>
+          <td> 5000</td>
+        </tr>
+        {% elif user.diamond.is_activated %}
+        <tr class="text-uppercase">
+        <td><b>Investment Plan </b></td>
+        <td><b>diamond</b></td>
+        </tr>
+        <tr>
+          <td><b>Investment Capital</b></td>
+          <td> 10000</td>
+        </tr>
+        {% elif user.ultimate.is_activated %}
+        <tr class="text-uppercase">
+        <td><b>Investment Plan </b></td>
+        <td><b>ultimate</b></td>
+        </tr>
+        <tr>
+          <td><b>Investment Capital</b></td>
+          <td> 15000</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td><b>Investment Interest</b></td>
+          <td>60%</td>
+        </tr>
+        <tr>
+          <td><b>Investment Duration</b></td>
+          <td>15days</td>
+        </tr>
+</table>
+<br>
+</div>
+</div>
+  </div>
+        
+  <div class="w3-card-4" style="width: 100%;">
+    <div class="w3-display-container">
+<center><h3>EARNING DETAILS</h3></center>
+<div class="w3-container">
+<table class="table lodge text-uppercase border-success" style="padding: 1px;">
+    
+  {% if user.bronze.is_activated %}
+  <tr class="text-uppercase">
+  <td><b>Activation BONUS </b></td>
+  <td><small>750</small></td>
+  </tr>
+  <tr>
+    <td><b>EXPECTED INCOME</b></td>
+    <td>1500</td>
+  </tr>
+  {% elif user.silver.is_activated %}
+  <tr >
+    <td><b>Activation BONUS </b></td>
+    <td><small>1250</small></td>
+  </tr>
+  <tr>
+    <td><b>EXPECTED INCOME</b></td>
+    <td>2500</td>
+  </tr>
+  {% elif user.gold.is_activated %}
+  <tr class="text-uppercase">
+    <td><b>Activation BONUS </b></td>
+    <td><small>2750</small></td>
+  </tr>
+  <tr>
+    <td><b>EXPECTED INCOME</b></td>
+    <td>5000</td>
+  </tr>
+  {% elif user.diamond.is_activated %}
+  <tr class="text-uppercase">
+    <td><b>Activation BONUS </b></td>
+    <td><small>4500</small></td>
+  </tr>
+  <tr>
+    <td><b>EXPECTED INCOME</b></td>
+    <td>16000</td>
+  </tr>
+  {% elif user.ultimate.is_activated %}
+  <tr class="text-uppercase">
+    <td><b>Activation BONUS </b></td>
+    <td><small>7500</small></td>
+  </tr>
+  <tr>
+    <td><b>EXPECTED INCOME</b></td>
+    <td>24000</td>
+  </tr>
+  {% endif %}
+  <tr>
+    <td><b>SPONSORED POSTS</b></td>
+    <td>100</td>
+  </tr>
+
+</table>
+</div>
+</div>
+  </div>
+
+
+<!--<ul class="list-group" >
+  {% if request.user.regular and not request.user.coupon %}
+
+
+        {% endif %}
     <li><a href="{% url 'payment_status' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: green; border-style: dashed;">PAYMENT STATUS</a></li>
     <li><a href="{% url 'support_form' %}" class="list-group-item" id="support" style=" border-radius:20%; border-bottom-color: green; border-style: dashed;">SUPPORT</a></li>
     <li><a href="{% url 'sponsored-post-home' %}" class="list-group-item" style=" border-radius: 20%; border-bottom-color: green; border-style: dashed;">SPONSORED POSTS</a></li>
-</ul>
-{% endif %}
-<br>
-<br>
-<h3>PROFILE DETAILS</h3>
-<p> Submitted incorrect information? we've got you covered, Contact our <a href="{% url 'support_form' %}"><b>SUPPORT</b></a> channel to help you out</p>
-<table class="table table-bordered table-hover table-striped table-responsive">
-    <tr>
-        <td>Full Name</td>
-        <td>{{user.first_name|title}} {{user.last_name|title}} </td>
-    </tr>
-    <tr>
-        <td>Username</td>
-        <td>{{user.username}}</td>
-    </tr>
-    <tr>
-        <td>Email Address</td>
-        <td style="padding: 20px; ">{{user.email}}</td>
-    </tr>
-    <tr>
-    <td> Created Post Approved</td>
-        <td>{{post}}</td>
+</ul>-->
 
-    </tr>
+<div class="w3-card-4" style="width: 100%;">
+  <div class="w3-display-container">
+<center><h3>ACCOUNT DETAILS</h3></center>
+<div class="w3-container">
+<table class="table lodge text-uppercase border-success table-responsive" style="padding: 1px;">
+
     <tr>
-        <td>Phone Number</td>
-        <td>{{user.profile.phone_number}}</td>
-    </tr>
-    <tr>
-        <td>Facebook Link</td>
-        <td>{{user.profile.facebook_link}}</td>
-    </tr>
-    <tr>
-        <td> Bank Name</td>
+        <td><i class="fas fa-laptop-house"></i> Bank Name</td>
         <td>{{user.profile.bank_name}}</td>
     </tr>
     <tr>
-        <td>Account Name</td>
+        <td><i class="fas fa-user-tie"></i> Account Name</td>
         <td>{{user.profile.account_name}}</td>
     </tr>
     <tr>
-        <td>Account Number</td>
+        <td><i class="fas fa-user-tie"></i>Account Number</td>
         <td>{{user.profile.account_number}}</td>
     </tr>
 </table>
-
 </div>
+</div>
+</div>
+{% endif %}
+
+
 {% endblock %}
 
 {% block carousel %}
-<strong style="font-family: 'Courier New', Courier, monospace; font-size: 150%;;" >FEATURED IMAGE</strong>
-<div class="container">
- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-   <ol class="carousel-indicators">
-     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-   </ol>
-   <div class="carousel-inner">
-     <div class="carousel-item active">
-       <img class="d-block w-100" style="height: 20rem; width: 18rem;" src="{% static 'img/featured1.jpg' %}" alt="featured image">
-     </div>
-     <div class="carousel-item">
-       <img class="d-block w-100"  style="height: 20rem; width: 18rem;" src="{% static 'img/featured2.jpg' %}" alt="featured image">
-     </div>
-   </div>
-   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-     <span class="sr-only">Previous</span>
-   </a>
-   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-     <span class="sr-only">Next</span>
-   </a>
- </div>
- </div>
- 
+<strong class="text-light">.</strong>
+
 {% endblock %}

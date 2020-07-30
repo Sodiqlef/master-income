@@ -7,7 +7,7 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     phone_number = models.CharField(max_length=11, unique=True)
-    profile_picture = CloudinaryField('profile_picture')
+    profile_picture = models.ImageField(upload_to='profile_picture')
     facebook_link = models.URLField(unique=True)
     account_name = models.CharField(max_length=30)
     bank_name = models.CharField(max_length=50)
@@ -18,48 +18,68 @@ class Profile(models.Model):
         return f'{self.user}'
 
 
-class CouponCode(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='coupon')
+class SilverCoupon(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='silver')
     coupon_code = models.CharField(max_length=20, unique=True)
     guider = models.CharField(max_length=150, default='none')
     is_activated = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f'{self.user} {self.pk}'
+        return f'{self.pk}   {self.user}'
+
+
+class BronzeCoupon(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='bronze')
+    coupon_code = models.CharField(max_length=20, unique=True)
+    guider = models.CharField(max_length=150, default='none')
+    is_activated = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.user}'
+
+
+class GoldCoupon(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='gold')
+    coupon_code = models.CharField(max_length=20, unique=True)
+    guider = models.CharField(max_length=150, default='none')
+    is_activated = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.user}'
+
+
+class UltimateCoupon(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='ultimate')
+    coupon_code = models.CharField(max_length=20, unique=True)
+    guider = models.CharField(max_length=150, default='none')
+    is_activated = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.user}'
+
+
+class DiamondCoupon(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='diamond')
+    coupon_code = models.CharField(max_length=20, unique=True)
+    guider = models.CharField(max_length=150, default='none')
+    is_activated = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.user}'
 
 
 class Earning(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='earning')
-    daily_login = models.PositiveIntegerField(default=0)
-    news_earned = models.IntegerField(default=0)
     sponsored_post = models.IntegerField(default=0)
-    approved_post = models.PositiveIntegerField(default=0)
-    activities_earning = models.IntegerField(default=0)
+    daily_earning = models.IntegerField(default=0)
+    withdrawal = models.CharField(max_length=100, null=True)
     guider_bonus = models.IntegerField(default=0)
-    activities_earning_withdrawn = models.IntegerField(default=0)
-    activities_earning_remain = models.IntegerField(default=0)
-    guider_bonus_withdrawn = models.IntegerField(default=0)
-    guider_bonus_remain = models.IntegerField(default=0)
-    last_login = models.IntegerField(default=20200000)
     post_pk = models.PositiveIntegerField(default=0)
-    news_pk = models.TextField(default=0)
-
-    def __str__(self):
-        return f'{self.user} {self.pk}'
-
-
-class Withdrawal(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='withdrawal')
-    facebook_link = models.URLField()
-    account_number = models.CharField(max_length=100, default='')
-    bank_name = models.CharField(max_length=100, default='')
-    account_name = models.CharField(max_length=100, default='')
-    activities_earning_to_withdraw = models.PositiveIntegerField(null=True)
-    guider_bonus_to_withdraw = models.PositiveIntegerField(null=True)
-    sponsored_post_check = models.BooleanField(default=False)
-    payment_successful = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True, null=True)
-    
 
     def __str__(self):
         return f'{self.user} {self.pk}'

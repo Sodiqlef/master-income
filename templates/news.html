@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
-{% block meta %}<meta name="description" content="{{posts.title}}">{% endblock %}
+{% block meta %}
+<meta name="description" content="{{posts.title}}">
+<meta property="og:image" content="{{posts.post_image.url}}">
+<meta property="og:image:alt" content="{{posts.title}}">
+<meta property="og:description" content="{{posts.title}}">
+ {% endblock %}
 {% block ad %}
-<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
-</script> {% endblock %}
+<!--<script data-ad-client="ca-pub-5355641360242350" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+</script>-->  {% endblock %}
 
 {% block title %} {{posts.title}} {% endblock %}}
 
@@ -15,8 +20,9 @@
 <small>
     <i class="fas fa-user"></i>{{posts.created_by}}
     <i class="fas fa-clock"></i>{{posts.date.date}}
+    
 </small><br><br>
-<p class="pre text-">{{posts.post}}</p><br>
+<p class="pre text-">{{posts.post|safe}}</p><br>
 
 <p style="border-top: 1px solid green"></p>
 <center>

@@ -1,0 +1,21 @@
+body{
+    background-color: green;
+}
+h1{
+    color: red;
+    background-color: greenyellow;
+    text-align: right;
+    font-family: cursive;
+    border: 10px dotted gold;
+    border-radius: 100px;
+    
+
+}
+p{
+    color: blue;
+    font-weight: bolder;
+    font-size: 175%;
+    white-space: pre-line;
+    padding-left: 20%;
+
+}

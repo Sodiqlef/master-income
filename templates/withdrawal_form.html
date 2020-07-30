@@ -6,6 +6,13 @@
 
 {% block content %}
 {% include 'messages.html' %}
+{% if request.user.profile %}
+{% if request.user.withdrawal %}
+
+<center class="alert alert-success"><strong class="text-uppercase">You Have Withdrawn already Check back next saturday.</strong></center>
+{% else %}
+{% if week == 5 and time >= 9 and time <= 10 %}
+
 <p id="rules"> Please, before you proceed on withdrawal, you should read through our withdrawal rules below and make sure you adhere to them.  </p>
 <br><h6><b>ACTIVITIES POINT WITHDRAWAL RULES ONLY</b></h6>
 <ol>
@@ -41,12 +48,7 @@ GUIDER BONUS: {{earning.guider_bonus_remain}}</strong><br>
 
 
 
-{% if request.user.profile %}
-{% if request.user.withdrawal %}
 
-<center class="alert alert-success"><strong class="text-uppercase">You Have Withdrawn already Check back next wednesday.</strong></center>
-{% else %}
-{% if week == 6 and time >= 18 and time <= 19 %}
 <form method="post" >
     {% csrf_token %}
 {% include 'widget.html' %}

@@ -10,10 +10,10 @@ Sponsored Post: {{sponsored_post.date}}
 <center>
     <img class="profile-picture" src="{{sponsored_post.feature_image.url}}" alt="feature image" style="border-radius: 1px;"> <br>
 </center>
-<p class="pre">{{sponsored_post.subject}}</p>
+<p></p><b>{{sponsored_post.subject|safe}}</b></p>
 
 
-<p style="border-top: 1px solid #aa11bb"></p>
+<p style="border-top: 1px solid green"></p>
 <center>
     <button onclick="window.print()" class="btn btn-dark">
         PRINT <span class="badge badge-light"><i class="fas fa-print" style="color: #f22"></i> </span>

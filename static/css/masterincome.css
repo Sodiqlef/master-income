@@ -1,6 +1,6 @@
 .navbar{
-    background-color: green;
     color: white;
+    border-bottom: 5px solid #0a0;
     font-family: algerian, Courier, fantasy;
 
 }
@@ -9,33 +9,20 @@
 
 }
 .nav-link{
-    background-color: green;
-    color: white;
     font-family: algerian, Courier, fantasy;
     font-weight: bold;
 }
 .nav-link:hover{
     background-color: white;
-    color: green;
+    color: red;
     font-family: Courier, fantasy;
     font-weight: bold;
 }
 h1,h2,h3,h4,h5,h6,strong{
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
-
-.breadcrumb{
-    background-color: green;
-}
-.btn{
-    background-color: green;
-    border-color: green;
-    color: white;
-    font-weight: bolder;
-    border-radius: 25px;
-}
-.btn:hover{
-    color: white;
+p{
+    font-family: serif;
 }
 table{
     text-align: center;
@@ -122,9 +109,7 @@ footer img{
 }
 .profile-picture{
     text-align: center;
-    width: 12rem;
-    height: 12rem;
-    border-radius: 50%;
+    border-radius: 1%;
 }
 footer h3{
     font-family: sans-serif;
@@ -140,4 +125,13 @@ footer a:hover{
 }
 .share{
     color: blue;
+}
+.border_down{
+    border-bottom: 1px solid #cccccc;
+}
+.bg{
+    background-image: url("/static/img/images.jpeg");
+    background-repeat: no-repeat;
+    height: 50%;
+    background-position: center;
 }

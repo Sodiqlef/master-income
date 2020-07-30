@@ -6,6 +6,7 @@ Sponsored Post
 {% endblock %}
 
 {% block content %}
+<center class="alert alert-danger" ><strong id="earn"></strong></center>
 <h5>Please read the instructions below carefully, for guidance on how to shared sponsored post. </h5>
 <p>Please adhere to the below guidelines to prevent issues with sharing sponsored post.</p>
 <ul>
@@ -15,11 +16,27 @@ Sponsored Post
     <li>Make sure your post is made public to enable us verify it on payment day</li>
 </ul>
 
+{% if user.coupon %}
 {% for post in sponsored_post %}
 
-<a {% if user.coupon %} href={{csrf_token}}{% url 'sponsored-post-news' post.pk %}{{csrf_token}}" {% else %} href="{% url 'coupon_form' %}" {% endif %}><b> SPONSORED POST</b> <b>{{post.date}} </b>
+<a href="{{csrf_token}}{% url 'sponsored-post-news' post.pk %}{{csrf_token}}"><b> SPONSORED POST</b> <b>{{post.date}} </b>
     <b class="red"> {{forloop.counter}}</b></a><br>
 
 {% endfor %}
+{% endif %}
+
+{% if user.regular and not user.coupon %}
+{% if sponsored_post.count >= 1 %}
+<a href="{{csrf_token}}{% url 'sponsored-post-news' sponsored_post.last.pk %}{{csrf_token}}"><b> SPONSORED POST</b> <b>{{sponsored_post.last.date}}</b>
+    <b class="red"> 1</b></a><br>
+{% else %}
+<center class="red">No sponsored post currently</center>
+    {% endif %}
+
+{% if sponsored_post.count > 1 %}
+<a href="#" onclick="document.getElementById('earn').innerHTML ='Only Premium members can earn this sponsored post'"><b> SPONSORED POST</b> <b>{{sponsored_post.first.date}}</b></a>
+<b class="red"> 2</b></a><br>
+{% endif %}
+{% endif %}
 
 {% endblock %}

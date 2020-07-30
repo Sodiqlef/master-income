@@ -6,15 +6,29 @@
 {% block breadcrumb %} Sign In {% endblock %}
 
 {% block content %}
+<style>
+    body{
+        background-color: #cfc;
+    }
+    .form-control{
+        background-color: #cfc;
+    }
+    .form-control:focus{
+        background-color: #cfc;
+    }
+</style>
 <form method="post" novalidate>
+    <fieldset class="w3-card-4 bg-light border-success ">
+        <legend class="bg-success text-center text-light">Login</legend>
     {% csrf_token %}
 {% include 'widget.html' %}
     <input type="checkbox" onclick="ShowPassword()"> Show Password<br><br>
-    <input type="submit" class="btn btn-dark btn-block" value="Log in">
+    <input type="submit" class="btn btn-success btn-block" value="Log in">
+</fieldset>
     </form>
 
 <div>
-    <p> Forgot Password? <a href="{% url 'password_reset' %}"><b class="blockquote">RESET!!!</b></a> </p>
+    <p > Forgot Password? <a href="{% url 'password_reset' %}" class="text-success"><b class="blockquote">RESET!!!</b></a> </p>
 </div>
 {% endblock %}
 
